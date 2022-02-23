@@ -1,0 +1,36 @@
+.sidebar{
+    border-right: 1px solid var(--primary-background);
+    flex: .2;
+    /* min-width: 250px; */
+    margin-top: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.sidebar .sidebarOption__link{
+    text-Decoration: 'none' ;
+    color:'black'
+}
+
+.sidebar_Icon{
+    color: var(--primary-color) !important;
+    font-size: 30px !important;
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+.sidebar__tweet{
+    background-color: var(--primary-color) !important;
+    border: none !important;
+    color: white !important;
+    font-weight: 900 !important;
+    text-transform: inherit !important;
+    border-radius: 30px !important;
+    width: 80px;
+    height: 40px !important;
+    margin-top: 20px !important;
+    margin-left: auto !important;
+    
+}
+.add_question_link {
+    text-decoration: none;
+}
