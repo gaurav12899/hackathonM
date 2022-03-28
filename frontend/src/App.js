@@ -1,0 +1,94 @@
+import React from 'react'
+import './App.css';
+//import SideBar from './Components/SideBar/SideBar'
+// import Feed from './Components/Feed/Feed'
+// import Widgets from './Components/Widgets/Widgets'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";import Profile from './Components/Profile/Profile';
+import HomePage from './Components/HomePage/HomePage';
+import Bookmark from './Components/Bookmarks/Bookmarks';
+import Header from './Components/Header/Header'
+import Question from './Components/AddQuestion/Question'
+import ViewQuestion from './Components/ViewQuestion/ViewQuestion';
+import Auth from "./Components/Auth/index";
+import { useDispatch, useSelector } from "react-redux";
+import { login, logout, selectUser } from "./feature/userSlice";
+import { useEffect } from "react";
+import { auth } from "./firebase";
+
+function App() {
+  const user = useSelector(selectUser);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    auth.onAuthStateChanged((authUser) => {
+      if (authUser) {
+        dispatch(
+          login({
+            uid: authUser.uid,
+            photo: authUser.photoURL,
+            displayName: authUser.displayName,
+            email: authUser.email,
+          })
+        );
+      } else {
+        dispatch(logout());
+      }
+      // console.log(authUser);
+    });
+  }, [dispatch]);
+
+  const PrivateRoute = ({ component: Component, ...rest }) => (
+    <Route
+      {...rest}
+      render={(props) =>
+        user ? (
+          <Component {...props} />
+        ) : (
+          <Redirect
+            to={{
+              pathname: "/auth",
+              state: {
+                from: props.location,
+              },
+            }}
+          />
+        )
+      }
+    />
+  );
+  return (
+    <div>
+          <Header/>
+        <Router>
+        <Switch>
+            
+        <Route path={user ?"/":"/auth"} exact component={user? HomePage :Auth} />
+        <PrivateRoute path="/profile" component={Profile} />
+        <PrivateRoute path="/bookmarks" component={Bookmark} />
+        <PrivateRoute path ="/add-question" component={Question}/>
+        <PrivateRoute path ="/question" component={ViewQuestion}/>
+
+
+      </Switch>
+   </Router>
+    </div>
+  )
+};
+// function App() {
+//   return (
+//     <Router>
+//       <Switch>
+//         <Route path="/" exact component={HomePage} />
+//         <Route path="/profile" component={Profile} />
+//         <Route path="/bookmarks" component={Bookmark} />
+//       </Switch>
+//     </Router>
+//   );
+// }
+
+export default App;
