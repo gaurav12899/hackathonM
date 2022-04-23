@@ -9,7 +9,6 @@ import MailOutlineIcon from '@material-ui/icons/MailOutline';
 import BookmarkBorderIcon from '@material-ui/icons/BookmarkBorder';
 import ListAltIcon from '@material-ui/icons/ListAlt';
 import PermIdentityIcon from '@material-ui/icons/PermIdentity';
-import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import { Button } from '@material-ui/core'
 import { Link } from 'react-router-dom';
 import logo from '../../assets/Icons/moleculelogo.jpeg'
@@ -22,19 +21,20 @@ function SideBar() {
             <Link to="/" style={{ textDecoration: 'none', color: 'black' }}>
                 <SideBarOption active Icon={HomeIcon} text='Home' />
             </Link>
+            <Link to="/exploreQuestions" style={{ textDecoration: 'none', color: 'black' }}>
             <SideBarOption Icon={SearchIcon} text='Exlpore' />
+            </Link>
             <SideBarOption Icon={NotificationsNoneIcon} text='Notifications' />
             <SideBarOption Icon={MailOutlineIcon} text='Messages' />
             <Link to="/bookmarks" style={{ textDecoration: 'none', color: 'black' }}>
                 <SideBarOption Icon={BookmarkBorderIcon} text='Bookmarks' />
             </Link>
             <SideBarOption Icon={ListAltIcon} text='Lists' />
-            <Link to='/profile' style={{ textDecoration: 'none', color: 'black' }} >
+            <Link to='/updateProfileA' style={{ textDecoration: 'none', color: 'black' }} >
                 <SideBarOption Icon={PermIdentityIcon} text='Profile' />
             </Link>
-            <SideBarOption Icon={MoreHorizIcon} text='More' />
             <Link to="/add-question" className='add_question_link'>
-                <Button variant="outlined" className="sidebar__tweet" fullWidth >Post a question</Button>
+                <Button variant="outlined" className="sidebar__tweet" fullWidth >+Question</Button>
             </Link>
 
         </div>

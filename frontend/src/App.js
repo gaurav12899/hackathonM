@@ -8,7 +8,7 @@ import {
   Switch,
   Route,
   Redirect,
-} from "react-router-dom";import Profile from './Components/Profile/Profile';
+} from "react-router-dom";
 import HomePage from './Components/HomePage/HomePage';
 import Bookmark from './Components/Bookmarks/Bookmarks';
 import Header from './Components/Header/Header'
@@ -19,7 +19,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { login, logout, selectUser } from "./feature/userSlice";
 import { useEffect } from "react";
 import { auth } from "./firebase";
-
+import ExploreQuestions from './Components/ExploreQuestions/ExploreQuestions';
+import AddPost from './Components/AddNewPost/AddPost';
+import UpdateProfileA from './Components/Profile/UpdateProfileA';
 function App() {
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
@@ -68,10 +70,13 @@ function App() {
         <Switch>
             
         <Route path={user ?"/":"/auth"} exact component={user? HomePage :Auth} />
-        <PrivateRoute path="/profile" component={Profile} />
+        <PrivateRoute path="/updateProfileA" component={UpdateProfileA} />
+        <PrivateRoute path="/exploreQuestions" component={ExploreQuestions} />
+
         <PrivateRoute path="/bookmarks" component={Bookmark} />
         <PrivateRoute path ="/add-question" component={Question}/>
         <PrivateRoute path ="/question" component={ViewQuestion}/>
+        <PrivateRoute path = "/add-post" component={AddPost}/>
 
 
       </Switch>

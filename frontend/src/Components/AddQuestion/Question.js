@@ -38,10 +38,6 @@ function Question() {
       matchVisual: false,
     },
   };
-  /*
-   * Quill editor formats
-   * See https://quilljs.com/docs/formats/
-   */
   Editor.formats = [
     "header",
     "font",

@@ -5,7 +5,12 @@
     "express": "^4.17.3",
     "mongoose": "^6.2.5",
     "nodemon": "^2.0.15",
-    "react-router-dom": "^5.2.0"
+    "react-datepicker": "^4.7.0",
+    "react-hook-form": "^7.30.0",
+    "react-hooks-form": "^2.0.1",
+    "react-quill-image-uploader": "^0.1.1",
+    "react-router-dom": "^5.2.0",
+    "react-select": "^5.3.0"
   },
   "name": "major-project",
   "version": "1.0.0",
@@ -27,6 +32,5 @@
     "url": "https://github.com/gaurav12899/hackathonM/issues"
   },
   "homepage": "https://github.com/gaurav12899/hackathonM#readme",
-  "devDependencies": {},
   "description": ""
 }

@@ -12,7 +12,6 @@ function HomePage() {
         async function getQuestion() {
           await axios.get("/api/question").then((res) => {
             setQuestions(res.data.reverse());
-            console.log(res.data)
           });
         }
         getQuestion();
@@ -23,8 +22,7 @@ function HomePage() {
             <SideBar/>
 
             {/* Feed */}
-            {/* <Feed/> */}
-            <AllQuestions questions ={questions}/>
+            <Feed/>
 
 
             {/* Widgets */}

@@ -15,7 +15,7 @@ function Post(
     // text,
     // image,
     // avatar,
-    props
+    // props
 ) {
     return (
         <div className="post">
@@ -34,9 +34,12 @@ function Post(
                         </h3>
                     </div>
                     <div className="post__headerDescription">
-                       { console.log(props.data)}
-                        <p>{props.data}
-                            {/* what is wrong with this code. Can anyone please ans my question. */}
+                       { 
+                    //    console.log(props.data)
+                }
+                        <p>
+                            {/* {props.data} */}
+                            what is wrong with this code. Can anyone please ans my question.
                         </p>
                     </div>
                 </div>
@@ -48,6 +51,7 @@ function Post(
                     <PublishIcon fontSize="small"/>
                 </div>
             </div>
+            
         </div>
     )
 }

@@ -53,10 +53,13 @@ font-size: large;
 
 
 .question-answer >a:hover {
-    color: var(--primary-color);
-    background-color: var(--hover-color);
+    padding: 5px 2px;
+    color: var(--hover-color);
+    background-color: var(--primary-color);
     font-size:1.1rem;
     margin-bottom: 10px;
+    font-weight: bolder;
+    border-radius: 5px;
     
 }
 

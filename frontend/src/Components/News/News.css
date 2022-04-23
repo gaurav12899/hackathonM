@@ -1,7 +1,8 @@
-.widgets{
-    flex: 0.3;
-    /* min-width: 500px; */
+.News{
+    flex: 0.35;
+    min-width: 500px;
     margin-top: 20px;
     padding-left: 20px;
     padding-right: 20px;
+    height: 100;
 }

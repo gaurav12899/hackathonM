@@ -49,14 +49,6 @@ const Cors =  require('cors')
 
 // });
 
-// app.get('/news', async(req,res)=>{
-//     try{
-// const newsApi= await Axios.get('http://newsapi.org/v2/top-headlines?country=in&category=technology&apiKey=95adeecc8fef42ce84c260c4ee23f0b3 ')
-// res.send(newsApi.data)
-//     }catch(err){
-//             console.log(err)
-//     }
-// })
 
 
 
@@ -72,14 +64,10 @@ const Cors =  require('cors')
 //   const express = require("express");
 //   const cors = require("cors");
 const path  = require('path')
-  // const path = require("path");
-  const app = express();
-// import router from "./Routers";
+const app = express();
 const router = require("./Routers")
 const bodyParser = require('body-parser')
-//   const bodyParser = require("body-parser");
-  const PORT = process.env.PORT || 80;
-  
+const PORT = process.env.PORT || 80;
 const db = require("./db");
   db.connect();
   
@@ -104,6 +92,17 @@ const db = require("./db");
       res.send("Welcome to Molecule");
     }
   });
+
+//   app.get('/news', async(req,res)=>{
+//     try{
+// const newsApi= await Axios.get('http://newsapi.org/v2/top-headlines?country=in&category=technology&apiKey=95adeecc8fef42ce84c260c4ee23f0b3 ')
+// res.send(newsApi.data)
+// console.log(newsApi.data)
+//     }catch(err){
+//             console.log(err)
+//     }
+// })
+
   
   app.use(Cors());
   

@@ -3,16 +3,17 @@ import { Link } from 'react-router-dom'
 import './AllQuestions.css'
 import FilterList from "@material-ui/icons/FilterList";
 import QuestionList from './QuestionList';
-function AllQuestions({questions}) {
+function AllQuestions({ questions }) {
+    
+      
     return (
-        <div>
             <div className='AllQuestions'>
                 <div className='AllQuestions-container'>
-                    <div className='AllQuestions-desc'>
-                        <h2>All </h2>
+                    <div className='AllQuestions-desc-top'>
+                        <h2>Some Interesting Questions</h2>
                     </div>
                     <div className="AllQuestions-desc">
-                        <p>{questions?.length} questions</p>
+                        <p style={{fontWeight:"bold"}}>{questions.length} questions</p>
                         <div className='AllQuestions-filter'>
                             <div className='AllQuestions-tabs'>
                                 <div className='AllQuestions-tab'>
@@ -31,16 +32,15 @@ function AllQuestions({questions}) {
                         </div>
                     </div>
                     <div className='questions'>
-                        {/* {questions.map((_q) => (
+                        {questions?.map((_q) => (
                             <div className="question">
                                 <QuestionList data={_q} />
                             </div>
-                        ))} */}
+                        ))}
                     </div>
                 </div>
 
             </div>
-        </div>
     )
 }
 
