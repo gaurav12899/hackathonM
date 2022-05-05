@@ -1,11 +1,11 @@
-import { Avatar } from '@material-ui/core'
-import ChatBubbleOutlineIcon from '@material-ui/icons/ChatBubbleOutline';
-import RepeatIcon from '@material-ui/icons/Repeat';
-import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
-import PublishIcon from '@material-ui/icons/Publish';
+import { Avatar } from '@mui/material'
+import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
+// import RepeatIcon from '@mui/icons-material/Repeat';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+// import PublishIcon from '@mui/icons-material/Publish';
 
 
-import VerifiedUserIcon from '@material-ui/icons/VerifiedUser';
+import VerifiedUserIcon from '@mui/icons-material/VerifiedUser';
 import React from 'react'
 import './Post.css'
 function Post(
@@ -46,9 +46,9 @@ function Post(
                 <img src="https://media.giphy.com/media/j5P0DQIOf4PonLi55G/giphy.gif" alt=""/>
                 <div className="post__footer">
                     <ChatBubbleOutlineIcon fontSize="small"/>
-                    <RepeatIcon fontSize="small"/>
+                    {/* <RepeatIcon fontSize="small"/> */}
                     <FavoriteBorderIcon fontSize="small"/>
-                    <PublishIcon fontSize="small"/>
+                    {/* <PublishIcon fontSize="small"/> */}
                 </div>
             </div>
             

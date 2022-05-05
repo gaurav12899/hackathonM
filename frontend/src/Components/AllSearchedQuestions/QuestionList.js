@@ -1,11 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import './QuestionList.css'
-import { Avatar } from '@material-ui/core'
+import { Avatar } from '@mui/material'
 import { stringAvatar } from "../../utils/Avatar";
 
 import ReactHtmlParser from "react-html-parser";
-import { BlockRounded } from '@material-ui/icons';
+import { BlockRounded } from '@mui/icons-material';
 
 function QuestionList({ data }) {
     function truncate(str, n) {

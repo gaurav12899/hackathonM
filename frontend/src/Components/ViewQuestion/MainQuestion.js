@@ -1,11 +1,11 @@
-import ThumbUp from "@material-ui/icons/ThumbUp";
-import ThumbDown from "@material-ui/icons/ThumbDown";
-import HistoryIcon from "@material-ui/icons/History";
-import BookmarkIcon from "@material-ui/icons/Bookmark";
+import ThumbUp from "@mui/icons-material/ThumbUp";
+import ThumbDown from "@mui/icons-material/ThumbDown";
+import HistoryIcon from "@mui/icons-material/History";
+import BookmarkIcon from "@mui/icons-material/Bookmark";
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css' //quill css
 import './MainQuestion.css'
-import { Avatar } from "@material-ui/core";
+import { Avatar } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import Editor from "react-quill/lib/toolbar";
 import axios from "axios";

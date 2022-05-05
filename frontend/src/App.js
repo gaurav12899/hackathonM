@@ -21,7 +21,7 @@ import { useEffect } from "react";
 import { auth } from "./firebase";
 import ExploreQuestions from './Components/ExploreQuestions/ExploreQuestions';
 import AddPost from './Components/AddNewPost/AddPost';
-import UpdateProfileA from './Components/Profile/UpdateProfileA';
+// import UpdateProfileA from './Components/Profile/UpdateProfileA';
 function App() {
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
@@ -70,7 +70,7 @@ function App() {
         <Switch>
             
         <Route path={user ?"/":"/auth"} exact component={user? HomePage :Auth} />
-        <PrivateRoute path="/updateProfileA" component={UpdateProfileA} />
+        {/* <PrivateRoute path="/updateProfileA" component={UpdateProfileA} /> */}
         <PrivateRoute path="/exploreQuestions" component={ExploreQuestions} />
 
         <PrivateRoute path="/bookmarks" component={Bookmark} />

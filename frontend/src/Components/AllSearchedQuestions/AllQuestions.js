@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import './AllQuestions.css'
-import FilterList from "@material-ui/icons/FilterList";
+import FilterList from "@mui/icons-material/FilterList";
 import QuestionList from './QuestionList';
 function AllQuestions({ questions }) {
     

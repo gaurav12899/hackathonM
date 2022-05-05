@@ -1,4 +1,4 @@
-import { BlockRounded, CenterFocusStrong } from "@material-ui/icons";
+import { BlockRounded, CenterFocusStrong } from "@mui/icons-material";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
