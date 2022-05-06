@@ -21,4 +21,23 @@ router.post("/", async (req, res) => {
     });
 });
 
+router.get("/", async (req, res) => {
+  // const model = new postModel({
+  //   title: req.body.title,
+  //   description: req.body.description,
+  //   tags: req.body.tags,
+  //   user: req.body.user
+  // });
+  postModel.find({})
+    .then((doc) => {
+      res.status(200).send(doc);
+    })
+    .catch((err) => {
+      res.status(400).send({
+        message: "Bad Request",
+      });
+    });
+});
+
+
 module.exports = router;
