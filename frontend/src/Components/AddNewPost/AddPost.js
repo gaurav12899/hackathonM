@@ -82,12 +82,12 @@ function AddPost() {
     if (title !== "" && body !== "") {
       const bodyJSON = {
         title: title,
-        body: body,
-        tag: JSON.stringify(tag),
+        description: body,
+        tags: tag,
         user: user,
       };
       await axios
-        .post("/api/newPost", bodyJSON)
+        .post("/api/post", bodyJSON)
         .then((res) => {
           // console.log(res.data);
           alert("New Post added successfully");

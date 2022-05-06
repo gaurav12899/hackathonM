@@ -71,7 +71,9 @@ function App() {
             
         <Route path={user ?"/":"/auth"} exact component={user? HomePage :Auth} />
         {/* <PrivateRoute path="/updateProfileA" component={UpdateProfileA} /> */}
-        <PrivateRoute path="/exploreQuestions" component={ExploreQuestions} />
+        <PrivateRoute path="/qna" component={ExploreQuestions} />
+        <PrivateRoute path="/freelancing" component={ExploreQuestions} />
+        <PrivateRoute path="/article" component={ExploreQuestions} />
 
         <PrivateRoute path="/bookmarks" component={Bookmark} />
         <PrivateRoute path ="/add-question" component={Question}/>
