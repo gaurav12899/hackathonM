@@ -8,6 +8,7 @@ import axios from "axios";
 
 function HomePage() {
     const [questions, setQuestions] = useState([]);
+
     useEffect(() => {
         async function getQuestion() {
           await axios.get("/api/question").then((res) => {

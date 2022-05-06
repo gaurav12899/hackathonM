@@ -7,22 +7,18 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 // import PublishIcon from '@mui/icons-material/Publish';
 import VerifiedUserIcon from "@mui/icons-material/VerifiedUser";
 import "./Post.css";
-function Post() {
+function Post(props) {
   // displayName,
   // username,
   // verified,
   // text,
   // image,
   // avatar,
-  // props
+  
   const [isLiked, setIsLiked] = useState({ state: true, number: "0" });
 
-//   const isLikedOnHandler = () => {
-//     setIsLiked((prevState) => ({
-//       state: !prevState.state,
-//       number: +!+prevState.number + "",
-//     }));
-//   };
+  const { title, description, tags, user } = props;
+
   return (
     <div className="post">
       <div className="post__avatar">
@@ -32,7 +28,7 @@ function Post() {
         <div className="post__header">
           <div className="post__headerText">
             <h3>
-              James Anderson{" "}
+              { user?.displayName }{" "}
               <span className="post__headerSpecial">
                 <VerifiedUserIcon className="post__badge" />
                 @james@123

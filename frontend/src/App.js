@@ -44,8 +44,9 @@ function App() {
     });
   }, [dispatch]);
 
-  const PrivateRoute = ({ component: Component, ...rest }) => (
-    <Route
+  const PrivateRoute = ({ component: Component, ...rest }) => {
+    console.log('user private', user);
+    return <Route
       {...rest}
       render={(props) =>
         user ? (
@@ -62,15 +63,33 @@ function App() {
         )
       }
     />
-  );
+    };
+
+    const ProtectedRoute = ({ component: Component, ...rest }) => {
+      return <Route
+        {...rest}
+        render={(props) =>
+          !user ? (
+            <Component {...props} />
+          ) : (
+            <Redirect
+              to={{
+                pathname: "/"
+              }}
+            />
+          )
+        }
+      />
+      };
   return (
     <div>
           <Header/>
         <Router>
         <Switch>
-            
-        <Route path={user ?"/":"/auth"} exact component={user? HomePage :Auth} />
+
+        {/* <Route path={user ?"/":"/auth"} exact component={user? HomePage :Auth} /> */}
         {/* <PrivateRoute path="/updateProfileA" component={UpdateProfileA} /> */}
+        <PrivateRoute path={"/"} exact component={HomePage} />
         <PrivateRoute path="/qna" component={ExploreQuestions} />
         <PrivateRoute path="/freelancing" component={ExploreQuestions} />
         <PrivateRoute path="/article" component={ExploreQuestions} />
@@ -79,6 +98,8 @@ function App() {
         <PrivateRoute path ="/add-question" component={Question}/>
         <PrivateRoute path ="/question" component={ViewQuestion}/>
         <PrivateRoute path = "/add-post" component={AddPost}/>
+
+        <ProtectedRoute path={"/auth"} exact component={Auth} />
 
 
       </Switch>

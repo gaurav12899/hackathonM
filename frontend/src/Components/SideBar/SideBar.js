@@ -2,15 +2,15 @@ import React from 'react'
 import './SideBar.css'
 // import Logo from '../assets/Icons/icon2.png'
 import SideBarOption from './SideBarOption';
-import HomeIcon from '@material-ui/icons/Home';
-import SearchIcon from '@material-ui/icons/Search';
-import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined';
-import NotificationsNoneIcon from '@material-ui/icons/NotificationsNone';
-import MailOutlineIcon from '@material-ui/icons/MailOutline';
-import BookmarkBorderIcon from '@material-ui/icons/BookmarkBorder';
-import ListAltIcon from '@material-ui/icons/ListAlt';
-import PermIdentityIcon from '@material-ui/icons/PermIdentity';
-import { Button } from '@material-ui/core'
+import HomeIcon from '@mui/icons-material/Home';
+import SearchIcon from '@mui/icons-material/Search';
+import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
+import MailOutlineIcon from '@mui/icons-material/MailOutline';
+import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
+import ListAltIcon from '@mui/icons-material/ListAlt';
+import PermIdentityIcon from '@mui/icons-material/PermIdentity';
+// import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlinedIcon';
+import { Button } from '@mui/material'
 import { Link } from 'react-router-dom';
 import logo from '../../assets/Icons/moleculelogo.jpeg'
 function SideBar() {
@@ -29,7 +29,7 @@ function SideBar() {
                 <SideBarOption active Icon={HomeIcon} text='Freelancing' />
             </Link>
             <Link to="/article" style={{ textDecoration: 'none', color: 'red' }}>
-                <SideBarOption active Icon={ArticleOutlinedIcon} text='Article' />
+                <SideBarOption active Icon={PermIdentityIcon} text='Article' />
             </Link>
             <SideBarOption Icon={NotificationsNoneIcon} text='Notifications' />
             <SideBarOption Icon={MailOutlineIcon} text='Messages' />

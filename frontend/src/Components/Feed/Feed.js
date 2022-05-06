@@ -9,6 +9,16 @@ import { Link } from 'react-router-dom';
 
 function Feed() {
     const [questions, setQuestions] = useState([]);
+    const [posts, setPosts] = useState([]);
+
+    const getPosts = () => {
+      axios.get("/api/post").then((res) => {
+        setPosts(res.data.reverse());
+      }).then((res) => {
+        setPosts(res.data);
+      });
+    }
+
     useEffect(() => {
         async function getQuestion() {
           await axios.get("/api/question").then((res) => {
@@ -16,6 +26,7 @@ function Feed() {
           });
         }
         getQuestion();
+        getPosts();
       }, []);
     return (
         <div className="feed">
@@ -41,8 +52,8 @@ function Feed() {
                 ></Post>
             )
             )} */}
-             {questions.map((question)=>(
-                <Post/>
+             {posts.map((post)=>(
+                <Post text={post.text} description={post.description} tags={post.tags} user={post.user} />
             ))}
         
             {/* AllQuestions when searched */}
