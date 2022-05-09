@@ -2,12 +2,18 @@ const express = require("express");
 const router = express.Router();
 const postModel = require("../models/Post");
 
-router.post("/", async (req, res) => {
+const multer  = require('multer')
+const upload = multer({ dest: './uploads/' })
+
+
+router.post("/", upload.single('image'), async (req, res) => {
+  debugger
   const model = new postModel({
     title: req.body.title,
     description: req.body.description,
     tags: req.body.tags,
-    user: req.body.user
+    user: req.body.user,
+    image: req.file.path
   });
 
   model.save()
