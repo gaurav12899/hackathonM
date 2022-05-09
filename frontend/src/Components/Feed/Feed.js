@@ -28,6 +28,7 @@ function Feed() {
         getQuestion();
         getPosts();
       }, []);
+      console.log("posts", posts);
     return (
         <div className="feed">
             {/*Header */}
@@ -53,7 +54,7 @@ function Feed() {
             )
             )} */}
              {posts.map((post)=>(
-                <Post text={post.text} description={post.description} tags={post.tags} user={post.user} />
+                <Post text={post.text} description={post.description} tags={post.tags} user={post.user} image={post.image} />
             ))}
         
             {/* AllQuestions when searched */}

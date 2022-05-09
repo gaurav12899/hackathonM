@@ -4,6 +4,8 @@ import './SideBar.css'
 import SideBarOption from './SideBarOption';
 import HomeIcon from '@mui/icons-material/Home';
 import SearchIcon from '@mui/icons-material/Search';
+import BathtubIcon from '@mui/icons-material/Bathtub';
+import ArticleIcon from '@mui/icons-material/Article';
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
@@ -23,15 +25,15 @@ function SideBar() {
                 <SideBarOption active Icon={HomeIcon} text='Home' />
             </Link>
             <Link to="/qna" style={{ textDecoration: 'none', color: 'black' }}>
-            <SideBarOption Icon={SearchIcon} text='QnA' />
+            <SideBarOption active Icon={SearchIcon} text='QnA' /> 
             </Link>
             <Link to="/freelancing" style={{ textDecoration: 'none', color: 'black' }}>
-                <SideBarOption active Icon={HomeIcon} text='Freelancing' />
+                <SideBarOption active Icon={BathtubIcon} text='Freelancing' />
             </Link>
             <Link to="/article" style={{ textDecoration: 'none', color: 'red' }}>
-                <SideBarOption active Icon={PermIdentityIcon} text='Article' />
+                <SideBarOption active Icon={ArticleIcon} text='Article' />
             </Link>
-            <SideBarOption Icon={NotificationsNoneIcon} text='Notifications' />
+            {/* <SideBarOption Icon={NotificationsNoneIcon} text='Notifications' />
             <SideBarOption Icon={MailOutlineIcon} text='Messages' />
             <Link to="/bookmarks" style={{ textDecoration: 'none', color: 'black' }}>
                 <SideBarOption Icon={BookmarkBorderIcon} text='Bookmarks' />
@@ -39,7 +41,7 @@ function SideBar() {
             <SideBarOption Icon={ListAltIcon} text='Lists' />
             <Link to='/updateProfileA' style={{ textDecoration: 'none', color: 'black' }} >
                 <SideBarOption Icon={PermIdentityIcon} text='Profile' />
-            </Link>
+            </Link> */}
             <Link to="/add-question" className='add_question_link'>
                 <Button variant="outlined" className="sidebar__tweet" fullWidth >+Question</Button>
             </Link>

@@ -17,8 +17,8 @@ function Post(props) {
   
   const [isLiked, setIsLiked] = useState({ state: true, number: "0" });
 
-  const { title, description, tags, user } = props;
-
+  const { title, description, tags, user, image } = props;
+console.log("image", image);
   return (
     <div className="post">
       <div className="post__avatar">
@@ -46,8 +46,10 @@ function Post(props) {
           </div>
         </div>
         <img
-          src="https://media.giphy.com/media/j5P0DQIOf4PonLi55G/giphy.gif"
-          alt=""
+          src={`http://localhost:3000/${image}`}
+          width={200}
+          height={200}
+          alt="image"
         />
         <div className="post__footer">
           <ChatBubbleOutlineIcon fontSize="small" />

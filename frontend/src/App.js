@@ -94,7 +94,7 @@ function App() {
         <PrivateRoute path="/freelancing" component={ExploreQuestions} />
         <PrivateRoute path="/article" component={ExploreQuestions} />
 
-        <PrivateRoute path="/bookmarks" component={Bookmark} />
+        {/* <PrivateRoute path="/bookmarks" component={Bookmark} /> */}
         <PrivateRoute path ="/add-question" component={Question}/>
         <PrivateRoute path ="/question" component={ViewQuestion}/>
         <PrivateRoute path = "/add-post" component={AddPost}/>

@@ -70,6 +70,9 @@ function AddPost() {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
   const [tag, setTag] = useState([]);
+  // const [photos, setPhotos] = useState(null)
+  const [picture, setPicture] = useState(null);
+  const [imgData, setImgData] = useState(null);
   const history = useHistory();
 
   const handleQuill = (value) => {
@@ -80,16 +83,26 @@ function AddPost() {
     e.preventDefault();
 
     if (title !== "" && body !== "") {
+      // debugger
+      const form_data = new FormData();
       const bodyJSON = {
         title: title,
         description: body,
         tags: tag,
         user: user,
+        image: picture
       };
-      await axios
-        .post("/api/post", bodyJSON)
+      for ( let key in bodyJSON ) {
+        form_data.append(key, bodyJSON[key]);
+    }
+      await axios({
+          method: 'post',
+          url: '/api/post',
+          data: form_data, // you are sending body instead
+          headers: { "Content-Type": "multipart/form-data" },
+      })
         .then((res) => {
-          // console.log(res.data);
+          console.log(res.data);
           alert("New Post added successfully");
           history.push("/");
         })
@@ -98,6 +111,23 @@ function AddPost() {
         });
     }
   };
+  const fileUpload = (e) =>{
+    e.preventDefault();
+    e.stopPropagation();
+    console.log(e.target.files[0]);
+    // const [file] = e?.target?.files?.length > 0 ? e?.target?.files : e?.dataTransfer?.files;
+    // setPhotos(file);
+    if (e.target.files[0]) {
+      console.log("picture: ", e.target.files);
+      setPicture(e.target.files[0]);
+      const reader = new FileReader();
+      reader.addEventListener("load", () => {
+        setImgData(reader.result);
+      });
+      reader.readAsDataURL(e.target.files[0]);
+    }
+  };
+
   return (
     <div className='add-post'>
       <div className='add-post-container'>
@@ -128,6 +158,18 @@ function AddPost() {
                   modules={Editor.modules} 
                   className='react-quill'
                    theme='snow' />
+              </div>
+            </div>
+            <div className='post-option'>
+              <div className='title'>
+                <h3>Image</h3>
+                <input 
+                  type="file"
+                  class="form-control"
+                  accept="image/*"
+                  onChange={(e) => fileUpload(e)}
+                />
+                <img className="upload_image" src={imgData} />
               </div>
             </div>
             <div className='post-option'>
