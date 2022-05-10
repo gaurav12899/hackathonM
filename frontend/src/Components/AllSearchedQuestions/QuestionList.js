@@ -40,7 +40,7 @@ function QuestionList({ data }) {
                         borderRadius:"5px",
                         padding:"2px"
                     }}>Question:</span> {data.title}</Link>
-                    <div style={{ maxWidth: "90%" }}>
+                    <div style={{ maxWidth: "90%", border: "1px solid #e6ecf0", padding: "0px 5px"}}>
                     <div>{ReactHtmlParser(truncate(data.body, 200))}</div>
                     </div>
                     <div style={{ display: "flex" }}>

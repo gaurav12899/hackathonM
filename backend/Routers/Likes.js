@@ -4,30 +4,34 @@ const likeDB = require("../models/Likes");
 
 const router = express.Router();
 
-router.post("/", async (req, res) => {
-    debugger
+const arrayToggleId = (arr, id) => {
+  let index = arr.indexOf(id);
+
+  if (index == -1) {
+    arr.push(id);
+  } else {
+    arr.splice(id, 1);
+  }
+
+  return arr;
+};
+
+router.post("/liketoggle", async (req, res) => {
+  let { userId } = req.body;
+  debugger
   try {
-    const alreadyAddLike = await likeDB.findOne({
+    const postData = await likeDB.findOne({
       post: mongoose.Types.ObjectId(req.body.postId),
-    });
-    if (alreadyAddLike) {
-      const payload = {};
-      if (req.body.like) {
-        payload.likes = alreadyAddLike.likes + 1;
-      } else {
-        payload.likes = alreadyAddLike.likes - 1;
-      }
-      const response = await likeDB.findByIdAndUpdate(
-        { post: mongoose.Types.ObjectId(req.body.postId) },
-        payload,
-        { new: true }
-      );
-      res.send(201).send({ response, message: "Your like added successfully" });
+    }).lean();
+    if (postData) {
+      postData.likes = arrayToggleId(postData.likes, userId);
+      const response = await likeDB.findOneAndUpdate({ post: req.body.postId }, postData, { new: true });
+      res.status(201).send({ response, message: "Your like added successfully" });
     } else {
       await likeDB
         .create({
           post: req.body.postId,
-          like: 1
+          likes: [ userId ],
         })
         .then((doc) => {
           res.status(201).send({
@@ -38,7 +42,7 @@ router.post("/", async (req, res) => {
         .catch((err) => {
           res.status(400).send({
             error: err,
-            message: "Bad format",
+            message: "Bad Request",
           });
         });
     }
@@ -48,3 +52,5 @@ router.post("/", async (req, res) => {
     });
   }
 });
+
+module.exports = router;

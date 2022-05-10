@@ -171,7 +171,7 @@ function MainQuestion() {
 
 
           <div className='question-answer'>
-            <p>{ReactHtmlParser(questionData?.body)}</p>
+            <p className='desc'>{ReactHtmlParser(questionData?.body)}</p>
             <div className='author'>
               <small> asked {new Date(questionData?.created_at).toLocaleString()}
               </small>

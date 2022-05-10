@@ -89,7 +89,7 @@ function AddPost() {
         title: title,
         description: body,
         tags: tag,
-        user: user,
+        user: JSON.stringify(user),
         image: picture
       };
       for ( let key in bodyJSON ) {

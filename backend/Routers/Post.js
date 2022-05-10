@@ -1,8 +1,10 @@
 const express = require("express");
 const router = express.Router();
 const postModel = require("../models/Post");
+const likesModel = require("../models/Likes");
 
-const multer  = require('multer')
+const multer  = require('multer');
+const { db } = require("../models/Likes");
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, './uploads')
@@ -37,7 +39,7 @@ router.post("/", imageUpload.single('image'), async (req, res) => {
     title: req.body.title,
     description: req.body.description,
     tags: req.body.tags,
-    user: JSON.stringify(req.body.user) || {},
+    user: JSON.parse(req.body.user) || {},
     image: `uploads/${req.file.originalname}`
   });
 
@@ -59,13 +61,45 @@ router.get("/", async (req, res) => {
   //   tags: req.body.tags,
   //   user: req.body.user
   // });
-  postModel.find({})
-    .then((doc) => {
-      res.status(200).send(doc);
+
+
+  // var aggregateQuery = postModel.aggregate([{
+  //   $lookup: {from: "Post", //or Races.collection.name
+  //   localField: "_id",
+  //   foreignField: "post",
+  //   as: "likes"
+  // }}]);
+  
+  // aggregateQuery.then((doc) => {
+  //   res.status(200).send(doc);
+  // }).catch((e) => {
+  //   res.status(400).send({
+  //     message: "Bad Request",
+  //     error: e
+  //   });
+  // });
+
+  
+  postModel.find({}).lean()
+    .then(async (doc) => {
+      try {
+        for (let i = 0; i < doc.length; i ++) {
+          let likesData = await likesModel.findOne({ post: doc[i]._id }).lean();
+          doc[i]['likes'] = [];
+          if (likesData) {
+            doc[i]['likes'] = likesData.likes
+          }
+        }
+          res.status(200).send(doc);
+      } catch (errrr) {
+        throw errrr;
+      }
+      
     })
     .catch((err) => {
       res.status(400).send({
         message: "Bad Request",
+        err
       });
     });
 });

@@ -5,8 +5,7 @@ const LikeSchema = new mongoose.Schema({
     ref: "Post",
   },
   likes: {
-    type: Number,
-    default: 0
+    type: Array
   }
 }, {timestamps: true});
 

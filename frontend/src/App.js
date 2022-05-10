@@ -21,6 +21,7 @@ import { useEffect } from "react";
 import { auth } from "./firebase";
 import ExploreQuestions from './Components/ExploreQuestions/ExploreQuestions';
 import AddPost from './Components/AddNewPost/AddPost';
+import Landing from './Components/Landing/Landing';
 import Freelancing from './Components/Freelancing/Freelancing';
 // import UpdateProfileA from './Components/Profile/UpdateProfileA';
 function App() {
@@ -29,6 +30,7 @@ function App() {
 
   useEffect(() => {
     auth.onAuthStateChanged((authUser) => {
+      console.log('authUser', authUser);
       if (authUser) {
         dispatch(
           login({
@@ -90,6 +92,7 @@ function App() {
 
         {/* <Route path={user ?"/":"/auth"} exact component={user? HomePage :Auth} /> */}
         {/* <PrivateRoute path="/updateProfileA" component={UpdateProfileA} /> */}
+        <Route path={"/"} exact component={user? HomePage : Landing} />
         <PrivateRoute path={"/"} exact component={HomePage} />
         <PrivateRoute path="/qna" component={ExploreQuestions} />
         <PrivateRoute path="/freelancing" component={Freelancing} />

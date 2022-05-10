@@ -17,22 +17,13 @@ function NewsItem({news}) {
                       {console.log(news.title)}
                     <h5 className="card-title">{news.title}</h5>
                     <p className="card-text">{news.description}</p>
-                    <a href={news.url} target="_blank" className="btn btn-sm btn-primary">
-              Know more
-            </a>
+                    <a href={news.url} target="_blank" className="btn btn-sm btn-primary knowBtn">Know more</a>
                     <br/>
-                   
                   </div>
                 </div>
               </div>
-
-          
         </div>
     )
 }
 
 export default NewsItem
-
-
-
-

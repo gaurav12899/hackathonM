@@ -53,8 +53,22 @@ function Feed() {
                 ></Post>
             )
             )} */}
-             {posts.map((post)=>(
-                <Post text={post.text} description={post.description} tags={post.tags} user={post.user} image={post.image} postId={post._id}  />
+             {posts.map((post, index)=>(
+                <Post 
+                title={post.title} 
+                description={post.description} 
+                tags={post.tags} 
+                user={post.user} 
+                image={post.image} 
+                postId={post._id} 
+                likes={post.likes} 
+                OnLike={(data) => {
+                  let list = [...posts];
+                  list[index].likes = data.likes;
+                  console.log('list[index]', list[index]);
+                  setPosts(list);
+                }}
+                 />
             ))}
         
             {/* AllQuestions when searched */}

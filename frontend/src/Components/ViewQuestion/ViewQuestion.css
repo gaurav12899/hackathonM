@@ -55,7 +55,7 @@
   }
   .comments > p{
     margin-left: -35px;
-    margin-top: 20px;
+    margin-top: 10px;
     font-size: small;
     cursor: pointer;
     color: rgba(0,0,0,0.4);
