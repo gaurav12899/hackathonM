@@ -1,9 +1,11 @@
 const express = require("express");
+const { default: mongoose } = require("mongoose");
 const router = express.Router();
 const UserModal = require("../models/User");
 
 router.post("/", async (req, res) => {
   const userData = new UserModal({
+    uid: req.body.uid,
     firstName: req.body.firstName,
     lastName: req.body.lastName,
     dob: new Date(req.body.dob),
@@ -30,7 +32,7 @@ router.post("/", async (req, res) => {
 });
 
 router.get("/", async (req, res) => {
-    await UserModal
+     UserModal
       .find({})
       .then((doc) => {
         res.status(201).send(doc);
@@ -43,11 +45,13 @@ router.get("/", async (req, res) => {
   });
 
   router.get("/:id", async (req, res) => {
-      const { userId } = req.params.id;
-    await UserModal
-      .findOne({ _id: id })
+      const userId = req.params.id;
+      console.log(userId);
+      UserModal
+      .findOne({ _id: mongoose.Types.ObjectId(userId)})
       .then((doc) => {
-        res.status(201).send(doc);
+          console.log(doc);
+        res.status(200).send(doc);
       })
       .catch((err) => {
         res.status(400).send({
@@ -57,8 +61,9 @@ router.get("/", async (req, res) => {
   });
 
   router.put("/:id", async (req, res) => {
-    const { userId } = req.params.id;
+    const userId = req.params.id;
     const userData = new UserModal({
+        uid: req.body.uid,
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         dob: new Date(req.body.dob),
@@ -71,7 +76,7 @@ router.get("/", async (req, res) => {
         workExperience: req.body.workExperience
       });
   await UserModal
-    .findOneAndUpdate({ _id: id }, userData)
+    .findOneAndUpdate({ _id: userId }, userData)
     .then((doc) => {
       res.status(201).send(doc);
     })
