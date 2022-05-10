@@ -21,6 +21,8 @@ import { useEffect } from "react";
 import { auth } from "./firebase";
 import ExploreQuestions from './Components/ExploreQuestions/ExploreQuestions';
 import AddPost from './Components/AddNewPost/AddPost';
+import Login from './Components/Landing/Landing';
+import Landing from './Components/Landing/Landing';
 // import UpdateProfileA from './Components/Profile/UpdateProfileA';
 function App() {
   const user = useSelector(selectUser);
@@ -83,11 +85,17 @@ function App() {
       };
   return (
     <div>
-          <Header/>
+        
+        <Header/>
         <Router>
         <Switch>
+<<<<<<< HEAD
 
         {/* <Route path={user ?"/":"/auth"} exact component={user? HomePage :Auth} /> */}
+=======
+            
+        <Route path={"/"} exact component={user? HomePage :Landing} />
+>>>>>>> 172128b (cosmetic changes)
         {/* <PrivateRoute path="/updateProfileA" component={UpdateProfileA} /> */}
         <PrivateRoute path={"/"} exact component={HomePage} />
         <PrivateRoute path="/qna" component={ExploreQuestions} />

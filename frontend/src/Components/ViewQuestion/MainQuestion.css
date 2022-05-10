@@ -23,8 +23,17 @@
   .arrow {
     font-size: 2rem;
     color: rgba(0, 0, 0, 0.25);
+    margin: 0;
+    padding:0;
   }
-  
+  .desc{
+    padding: 0px;
+    margin: 0;
+  }
+  .auth-details p{
+    padding: 0px;
+    margin: 0;
+  }
   .all-options > .MuiSvgIcon-root {
     color: rgba(0, 0, 0, 0.25);
     font-size: large;

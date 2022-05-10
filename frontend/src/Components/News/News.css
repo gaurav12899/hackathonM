@@ -6,3 +6,34 @@
     padding-right: 20px;
     height: 100;
 }
+.NewsItem{
+        border: 1px solid #d9dfe4;
+        /* border-radius:10px; */
+        overflow: hidden;
+        padding:10px;
+        padding-bottom: 20px;
+        margin-top: 15px;
+        
+}
+.knowBtn{
+    color: #000;
+    border: 1px solid #F5CF50;
+    padding:6px 10px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin: 0px;
+    transition: 0.2s;
+    font-weight: 500;
+}
+.knowBtn:hover{
+    background-color: #F5CF50;
+    color: #fff;
+}
+.card-title{
+    margin: 5px 0px;
+    padding:0px;
+}
+.card-text{
+    margin-top: 5px;
+    padding:0px;
+}
