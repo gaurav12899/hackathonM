@@ -89,13 +89,8 @@ function App() {
         <Header/>
         <Router>
         <Switch>
-<<<<<<< HEAD
-
-        {/* <Route path={user ?"/":"/auth"} exact component={user? HomePage :Auth} /> */}
-=======
             
         <Route path={"/"} exact component={user? HomePage :Landing} />
->>>>>>> 172128b (cosmetic changes)
         {/* <PrivateRoute path="/updateProfileA" component={UpdateProfileA} /> */}
         <PrivateRoute path={"/"} exact component={HomePage} />
         <PrivateRoute path="/qna" component={ExploreQuestions} />

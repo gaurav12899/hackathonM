@@ -7,6 +7,8 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 // import PublishIcon from '@mui/icons-material/Publish';
 import VerifiedUserIcon from "@mui/icons-material/VerifiedUser";
 import "./Post.css";
+import Parser from 'html-react-parser';
+
 function Post(props) {
   // displayName,
   // username,
@@ -22,16 +24,16 @@ console.log("image", image);
   return (
     <div className="post">
       <div className="post__avatar">
-        <Avatar src="https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=889&q=80" />
+        <Avatar src={ user?.photo || "https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=889&q=80"} />
       </div>
       <div className="post__body">
         <div className="post__header">
           <div className="post__headerText">
             <h3>
-              { user?.displayName }{" "}
+              { user?.displayName || 'Anonymous' }{" "}
               <span className="post__headerSpecial">
                 <VerifiedUserIcon className="post__badge" />
-                @james@123
+                @{ user?.email }
               </span>
             </h3>
           </div>
@@ -41,7 +43,8 @@ console.log("image", image);
             }
             <p>
               {/* {props.data} */}
-              what is wrong with this code. Can anyone please ans my question.
+              <b>title</b>
+            { Parser(description) }
             </p>
           </div>
         </div>
