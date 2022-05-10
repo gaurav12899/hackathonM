@@ -1,0 +1,33 @@
+
+  .articleIndex{
+    display: flex;
+    height: 100vh;
+    /* max-width:1300px; */
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 10px;
+  }
+  
+  .articalButton{
+    padding:10px 20px;
+    border: unset;
+    color: #fff;
+    background-color:#F5CF50;
+    border-radius: 5px;
+    margin-top: 20px;
+    display: block;
+    margin-left: auto;
+    margin-right:auto;
+  }
+  .mainDiv{
+    position: relative;
+    width: 100%;
+  }
+  .card{
+    margin-left: auto;
+    margin-right: auto;
+   margin-top: 20px;
+  }
+  .articleCard{
+    margin-top: 50px;
+  }

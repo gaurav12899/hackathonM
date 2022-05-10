@@ -22,7 +22,11 @@ import { auth } from "./firebase";
 import ExploreQuestions from './Components/ExploreQuestions/ExploreQuestions';
 import AddPost from './Components/AddNewPost/AddPost';
 import Landing from './Components/Landing/Landing';
-import Freelancing from './Components/Freelancing/Freelancing';
+import Freelancing from './Components/Freelancing';
+import FreelancingRegister from './Components/Freelancing/Freelancing';
+import CardDetails from './Components/Freelancing/CardDetails';
+import ArticleForm from './Components/Article/ArticleForm';
+import Article from './Components/Article/index';
 // import UpdateProfileA from './Components/Profile/UpdateProfileA';
 function App() {
   const user = useSelector(selectUser);
@@ -96,7 +100,10 @@ function App() {
         <PrivateRoute path={"/"} exact component={HomePage} />
         <PrivateRoute path="/qna" component={ExploreQuestions} />
         <PrivateRoute path="/freelancing" component={Freelancing} />
-        <PrivateRoute path="/article" component={ExploreQuestions} />
+        <PrivateRoute path = "/register-freelancing" component={FreelancingRegister}/>
+        <PrivateRoute path="/article" component={Article} />
+        <PrivateRoute path="/article-form" component={ArticleForm} />
+        <PrivateRoute path="/freelancer/view/:id" component={CardDetails} />
 
         {/* <PrivateRoute path="/bookmarks" component={Bookmark} /> */}
         <PrivateRoute path ="/add-question" component={Question}/>
