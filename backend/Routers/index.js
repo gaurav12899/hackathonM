@@ -6,6 +6,7 @@ const answerRouter = require("./Answer");
 const commentRouter = require('./Comments');
 const postRouter = require('./Post');
 const likeRouter = require('./Likes');
+const freelancingRouter = require("./Freelancing");
 const { default: axios } = require("axios");
 const updateProfileA = require("./UpdateProfileA");
 router.get("/", (req, res) => {
@@ -28,4 +29,5 @@ router.use('/comment', commentRouter);
 router.use('/post', postRouter);
 router.use('/updateProfileA', updateProfileA);
 router.use('/like', likeRouter);
+router.use('/freelancing', freelancingRouter);
 module.exports = router;
