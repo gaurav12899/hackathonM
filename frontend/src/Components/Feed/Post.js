@@ -5,6 +5,7 @@ import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 // import PublishIcon from '@mui/icons-material/Publish';
+import axios from "axios";
 import VerifiedUserIcon from "@mui/icons-material/VerifiedUser";
 import "./Post.css";
 function Post(props) {
@@ -14,10 +15,27 @@ function Post(props) {
   // text,
   // image,
   // avatar,
+  const { title, description, tags, user, image, postId } = props;
   
-  const [isLiked, setIsLiked] = useState({ state: true, number: "0" });
+  const [isLiked, setIsLiked] = useState({ like: false, number: "0" });
+  const onLikeChange = async (like) => {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    await axios
+        .post("/api/like", {postId, like}, config)
+        .then((res) => {
+          debugger;
+          console.log("like------------>>>", res.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    setIsLiked({...isLiked, like: !isLiked.like});
+  }
 
-  const { title, description, tags, user, image } = props;
 console.log("image", image);
   return (
     <div className="post">
@@ -49,19 +67,19 @@ console.log("image", image);
           src={`http://localhost:3000/${image}`}
           width={200}
           height={200}
-          alt="image"
+          alt="img"
         />
         <div className="post__footer">
           <ChatBubbleOutlineIcon fontSize="small" />
-          {isLiked ? (
-            <FavoriteBorderIcon
-              fontSize="small"
-              onClick={() => setIsLiked(!isLiked)}
-            />
-          ) : (
+          {isLiked.like ? (
             <FavoriteIcon
               fontSize="small"
-              onClick={() => setIsLiked(!isLiked)}
+              onClick={() => onLikeChange(false)}
+            />
+          ) : (
+            <FavoriteBorderIcon
+              fontSize="small"
+              onClick={() => onLikeChange(true)}
             />
           )}
           {/* <PublishIcon fontSize="small"/> */}

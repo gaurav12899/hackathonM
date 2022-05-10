@@ -32,13 +32,12 @@ const imageUpload = multer({
 });
 
 router.post("/", imageUpload.single('image'), async (req, res) => {
-  // debugger
   console.log("file_name", req.file);
   const model = new postModel({
     title: req.body.title,
     description: req.body.description,
     tags: req.body.tags,
-    user: JSON.parse(req.body.user),
+    user: JSON.stringify(req.body.user) || {},
     image: `uploads/${req.file.originalname}`
   });
 

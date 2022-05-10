@@ -21,6 +21,7 @@ import { useEffect } from "react";
 import { auth } from "./firebase";
 import ExploreQuestions from './Components/ExploreQuestions/ExploreQuestions';
 import AddPost from './Components/AddNewPost/AddPost';
+import Freelancing from './Components/Freelancing/Freelancing';
 // import UpdateProfileA from './Components/Profile/UpdateProfileA';
 function App() {
   const user = useSelector(selectUser);
@@ -91,7 +92,7 @@ function App() {
         {/* <PrivateRoute path="/updateProfileA" component={UpdateProfileA} /> */}
         <PrivateRoute path={"/"} exact component={HomePage} />
         <PrivateRoute path="/qna" component={ExploreQuestions} />
-        <PrivateRoute path="/freelancing" component={ExploreQuestions} />
+        <PrivateRoute path="/freelancing" component={Freelancing} />
         <PrivateRoute path="/article" component={ExploreQuestions} />
 
         {/* <PrivateRoute path="/bookmarks" component={Bookmark} /> */}

@@ -4,7 +4,8 @@ const router = express.Router();
 const questionRouter = require("./Question");
 const answerRouter = require("./Answer");
 const commentRouter = require('./Comments');
-const postRouter = require('./Post')
+const postRouter = require('./Post');
+const likeRouter = require('./Likes');
 const { default: axios } = require("axios");
 const updateProfileA = require("./UpdateProfileA");
 router.get("/", (req, res) => {
@@ -23,8 +24,8 @@ router.get('/news', async (req, res) => {
 
 router.use("/question", questionRouter);
 router.use("/answer", answerRouter);
-router.use('/comment', commentRouter)
-router.use('/post', postRouter)
-router.use('/updateProfileA',updateProfileA)
-
+router.use('/comment', commentRouter);
+router.use('/post', postRouter);
+router.use('/updateProfileA', updateProfileA);
+router.use('/like', likeRouter);
 module.exports = router;

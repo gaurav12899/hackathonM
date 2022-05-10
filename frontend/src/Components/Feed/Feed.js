@@ -54,7 +54,7 @@ function Feed() {
             )
             )} */}
              {posts.map((post)=>(
-                <Post text={post.text} description={post.description} tags={post.tags} user={post.user} image={post.image} />
+                <Post text={post.text} description={post.description} tags={post.tags} user={post.user} image={post.image} postId={post._id}  />
             ))}
         
             {/* AllQuestions when searched */}
