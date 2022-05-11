@@ -7,19 +7,31 @@ const userSchema = new mongoose.Schema({
     },
     firstName: {
         type: String,
-        required: true
+        required: false
     },
     lastName: {
         type: String,
-        required: true
+        required: false
+    },
+    skill: {
+        type: String,
+        required: false
+    },
+    address: {
+        type: String,
+        required: false
     },
     dob: {
         type: Date,
-        required: true
+        required: false
+    },
+    profileUrl: {
+        type: String,
+        required: false
     },
     mobileNumber: {
         type: String,
-        required: true
+        required: false
     },
     email: {
         type: String,
@@ -27,7 +39,7 @@ const userSchema = new mongoose.Schema({
     },
     gender: {
         type: String,
-        required: true
+        required: false
     },
     community: {
         type: String,
@@ -46,6 +58,6 @@ const userSchema = new mongoose.Schema({
         required: false
     },
 
-}, { timestamps: true });
+});
 
 module.exports = mongoose.model("User", userSchema);

@@ -81,7 +81,7 @@ console.log("image", image);
           alt="image"
         />
         <div className="post__footer">
-          <ChatBubbleOutlineIcon fontSize="small" />
+          {/* <ChatBubbleOutlineIcon fontSize="small" /> */}
           {likes?.indexOf(AuthUser.uid) > -1 ? (
             <FavoriteIcon
               fontSize="small"

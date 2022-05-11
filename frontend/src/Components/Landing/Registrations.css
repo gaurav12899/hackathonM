@@ -1,0 +1,41 @@
+.reg-field{
+    justify-content: space-between !important;
+    display: flex !important;
+} 
+.reg-text{
+    width:32% !important;   
+}
+.registerations-card{
+    width:70% !important;
+    margin-left:auto !important;
+    margin-right:auto !important;
+    margin:  50px 0px;
+    text-align: center !important;
+}
+
+
+
+.user-card{
+    text-align: center;
+    width:70% !important;
+    margin-left:auto !important;
+    margin-right:auto !important;
+    margin:  50px 0px;
+}
+.intrest{
+    justify-content: space-between !important;
+    display: flex !important;
+}
+.int{
+    width:32% !important;   
+}
+.work{
+    justify-content: space-between !important;
+    display: flex !important;
+}
+.work1{
+    width:32% !important;   
+}
+.community{
+    width: 100% !important;
+}

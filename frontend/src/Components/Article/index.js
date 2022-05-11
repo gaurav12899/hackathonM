@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import SideBar from "../SideBar/SideBar";
-import styles from "../Article/index.css";
+import "../Article/index.css";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
@@ -61,6 +61,7 @@ function Article() {
               </div>
             ))
           : null}
+          {/* <Article /> */}
       </div>
     </div>
   );

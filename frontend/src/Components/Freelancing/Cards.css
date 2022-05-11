@@ -1,9 +1,44 @@
+.freelanceCard{
+    display: flex;
+    height: 100vh;
+    /* max-width:1300px; */
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 10px;
+  }
 .card-text{
     display: flex;
     justify-content: flex-start;
     
 
 }
-.cards{
-    padding: 30px;
+ .cards{
+    height: 100%;
+    margin: 0px !important;
+    padding: 20px !important;
+    border: 5px solid #eaeaea;
+    display: flex;
+    height: 80px;
 }
+
+
+  .card-text{
+      padding-left: 20px;
+      padding-right: 20px;
+      align-items: center;
+      
+  }
+  .page-heading{
+      text-align: center;
+      width: 100%;
+      
+  }
+  .page-title{
+    font-weight: 700!important;
+    font-size:25px !important;
+  }
+  .card-contaent{
+      padding: 0px !important;
+      margin: 0px !important;
+  }
+  

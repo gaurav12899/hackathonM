@@ -18,7 +18,7 @@ const arrayToggleId = (arr, id) => {
 
 router.post("/liketoggle", async (req, res) => {
   let { userId } = req.body;
-  debugger
+  // debugger
   try {
     const postData = await likeDB.findOne({
       post: mongoose.Types.ObjectId(req.body.postId),

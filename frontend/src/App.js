@@ -27,13 +27,15 @@ import FreelancingRegister from './Components/Freelancing/Freelancing';
 import CardDetails from './Components/Freelancing/CardDetails';
 import ArticleForm from './Components/Article/ArticleForm';
 import Article from './Components/Article/index';
+import Registrations from './Components/Landing/Registrations';
+import axios from 'axios';
 // import UpdateProfileA from './Components/Profile/UpdateProfileA';
 function App() {
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    auth.onAuthStateChanged((authUser) => {
+    auth.onAuthStateChanged(async (authUser) => {
       console.log('authUser', authUser);
       if (authUser) {
         dispatch(
@@ -97,13 +99,14 @@ function App() {
         {/* <Route path={user ?"/":"/auth"} exact component={user? HomePage :Auth} /> */}
         {/* <PrivateRoute path="/updateProfileA" component={UpdateProfileA} /> */}
         <Route path={"/"} exact component={user? HomePage : Landing} />
+        <Route path={"/registration"} exact component={user? Registrations : Landing} />
         <PrivateRoute path={"/"} exact component={HomePage} />
         <PrivateRoute path="/qna" component={ExploreQuestions} />
         <PrivateRoute path="/freelancing" component={Freelancing} />
         <PrivateRoute path = "/register-freelancing" component={FreelancingRegister}/>
         <PrivateRoute path="/article" component={Article} />
         <PrivateRoute path="/article-form" component={ArticleForm} />
-        <PrivateRoute path="/freelancer/view/:id" component={CardDetails} />
+        <PrivateRoute path="/freelancer" component={CardDetails} />
 
         {/* <PrivateRoute path="/bookmarks" component={Bookmark} /> */}
         <PrivateRoute path ="/add-question" component={Question}/>

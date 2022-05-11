@@ -6,18 +6,9 @@ const UserModal = require("../models/User");
 router.post("/", async (req, res) => {
   const userData = new UserModal({
     uid: req.body.uid,
-    firstName: req.body.firstName,
-    lastName: req.body.lastName,
-    dob: new Date(req.body.dob),
-    mobileNumber: req.body.mobileNumber,
     email: req.body.email,
-    gender: req.body.gender,
-    community: req.body.community,
-    interests: req.body.interests,
-    company: req.body.company,
-    workExperience: req.body.workExperience
+    profileUrl: req.body.photoURL
   });
-
   await userData
     .save()
     .then((doc) => {
@@ -60,29 +51,46 @@ router.get("/", async (req, res) => {
       });
   });
 
-  router.put("/:id", async (req, res) => {
-    const userId = req.params.id;
-    const userData = new UserModal({
-        uid: req.body.uid,
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        dob: new Date(req.body.dob),
-        mobileNumber: req.body.mobileNumber,
-        email: req.body.email,
-        gender: req.body.gender,
-        community: req.body.community,
-        interests: req.body.interests,
-        company: req.body.company,
-        workExperience: req.body.workExperience
+  router.get("/getUserWithUid/:uid", async (req, res) => {
+    const uid = req.params.uid;
+    UserModal
+    .findOne({ uid })
+    .then((doc) => {
+        console.log(doc);
+      res.status(200).send(doc);
+    })
+    .catch((err) => {
+      res.status(400).send({
+        message: "bad request",
       });
+    });
+});
+
+  router.put("/:id", async (req, res) => {
+    debugger
+    const userId = req.params.id;
+    // const userData = new UserModal({
+    //     uid: req.body.uid,
+    //     firstName: req.body.firstName,
+    //     lastName: req.body.lastName,
+    //     dob: new Date(req.body.dob),
+    //     mobileNumber: req.body.mobileNumber,
+    //     email: req.body.email,
+    //     gender: req.body.gender,
+    //     community: req.body.community,
+    //     interests: req.body.interests,
+    //     company: req.body.company,
+    //     workExperience: req.body.workExperience
+    //   });
   await UserModal
-    .findOneAndUpdate({ _id: userId }, userData)
+    .findOneAndUpdate({ uid: userId.toString() }, {$set: req.body})
     .then((doc) => {
       res.status(201).send(doc);
     })
     .catch((err) => {
+      debugger
       res.status(400).send({
-        message: "User update failed",
+        message: "User update failed " + err.message,
       });
     });
 });

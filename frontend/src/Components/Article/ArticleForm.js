@@ -7,6 +7,7 @@ import axios from "axios";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import { useHistory } from "react-router-dom";
+import TextField from "@mui/material/TextField";
 
 function ArticleForm() {
   var toolbarOptions = [
@@ -59,8 +60,26 @@ function ArticleForm() {
   const history = useHistory();
   const [body, setBody] = useState("");
 
-  const handleSubmit = async (values) => {
-    await axios({
+  const validate = (values) => {
+    // debugger
+    const errors = {};
+    if(!values.title){
+      errors.title = "Required";
+    }
+    if(!values.body){
+      errors.body = "Required";
+    }
+    return errors;
+  }
+
+  const formik = useFormik({
+    initialValues: {
+      title: "",
+      body: ""
+    },
+    validate,
+    onSubmit(values){
+      axios({
         method: 'post',
         url: '/api/article/add',
         data: values, // you are sending body instead
@@ -70,21 +89,10 @@ function ArticleForm() {
         history.push("/article");
       })
       .catch((err) => {
+        history.push("/");
         console.log(err);
       });
-  };
-  const formik = useFormik({
-    initialValues: {
-      title: "",
-      body: ""
     },
-    validationSchema: Yup.object({
-      title: Yup.string()
-        .required("Title is required"),
-      body: Yup.string()
-        .required("Body is required")
-    }),
-    onSubmit: handleSubmit,
   });
 
   const handleQuill = (value) => {
@@ -109,7 +117,7 @@ function ArticleForm() {
                     Be specific and imagine you are asking a question to another
                     person
                   </small>
-                  <input
+                  <TextField
                     type="text"
                     placeholder="eg. What is regression in machine learning"
                     name="title"
@@ -118,6 +126,7 @@ function ArticleForm() {
                     error={formik.touched.title && Boolean(formik.errors.title)}
                     helperText={formik.touched.title && formik.errors.title}
                   />
+                  {/* {formik.errors.title} */}
                 </div>
               </div>
               <div className="post-option">
@@ -138,9 +147,10 @@ function ArticleForm() {
                     modules={Editor.modules}
                     className="react-quill"
                     theme="snow"
-                    error={formik.touched.body && Boolean(formik.errors.body)}
-                    helperText={formik.touched.body && formik.errors.body}
+                    // error={formik.touched.body && Boolean(formik.errors.body)}
+                    // helperText={formik.touched.body && formik.errors.body}
                   />
+                  {formik.errors.body}
                 </div>
               </div>
             </div>
@@ -148,7 +158,7 @@ function ArticleForm() {
           <button
             className="button"
             type="submit">
-            Add Post
+            Add Article
           </button>
         </div>
       </div>

@@ -7,12 +7,8 @@ import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Grid from "@material-ui/core/Grid";
-import { createTheme, ThemeProvider, styled } from "@mui/material/styles";
-import {
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  signInWithPopup,
-} from "firebase/auth";
+import axios from "axios";
+import { signInWithPopup } from "firebase/auth";
 import { auth, provider } from "../../firebase";
 import { useHistory } from "react-router-dom";
 
@@ -23,15 +19,47 @@ const Landing = () => {
   const handleGoogleSignIN = () => {
     setLoading(true);
     signInWithPopup(auth, provider)
-      .then((res) => {
+      .then(async (res) => {
         setLoading(false);
-        // console.log(res);
-        history.push("/");
-        // return (
-        //   <>
-
-        //   </>
-        // );
+        console.log("Login", res);
+        const config = {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        };
+        await axios
+          .get(`/api/user/getUserWithUid/${res?.user?.uid}`, {}, config)
+          .then(async (result) => {
+            if (result?.data) {
+              history.push("/");
+            } else {
+              const payload = {
+                uid: res?.user?.uid,
+                email: res?.user?.email,
+                profile: res?.user?.photoURL,
+              };
+              await axios({
+                method: "post",
+                url: "/api/user",
+                data: payload, // you are sending body instead
+                headers: { "Content-Type": "application/json" },
+              })
+                .then((response) => {
+                  debugger
+                  if (response) 
+                    history.push({
+                      pathname: "/registration",
+                      state: { details: response?.data || {} },
+                    });
+                })
+                .catch((err) => {
+                  console.log(err);
+                });
+            }
+          })
+          .catch((err) => {
+            console.log(err);
+          });
       })
       .catch((error) => {
         setLoading(false);
@@ -69,7 +97,13 @@ const Landing = () => {
         </CardContent>
         <CardActions>
           <Grid container justify="center">
-            <Button className="login-btn" onClick={handleGoogleSignIN} disabled={loading}>Login with Google</Button>
+            <Button
+              className="login-btn"
+              onClick={handleGoogleSignIN}
+              disabled={loading}
+            >
+              Login with Google
+            </Button>
           </Grid>
         </CardActions>
       </Card>
