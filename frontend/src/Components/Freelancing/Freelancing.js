@@ -12,9 +12,12 @@ import axios from "axios";
 import { useFormik } from "formik";
 import { useHistory } from "react-router-dom";
 import "./Freelancing.css";
+import { useSelector } from "react-redux";
+import { selectUser } from "../../feature/userSlice";
 
 function FreelancingRegister() {
   const history = useHistory();
+  const user = useSelector(selectUser);
 
   const handleSubmit = async (values) => {
     let skills = [values.skill1];
@@ -29,7 +32,8 @@ function FreelancingRegister() {
       email: values.email,
       alternativeContact: values.alternativeContact,
       workExperience: values.workExperience,
-      hourlyRate: values.hourlyRate
+      hourlyRate: values.hourlyRate,
+      uid: user.uid
     }
     const config = {
       headers: {

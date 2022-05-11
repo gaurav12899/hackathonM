@@ -63,7 +63,7 @@ function App() {
         ) : (
           <Redirect
             to={{
-              pathname: "/auth",
+              pathname: "/",
               state: {
                 from: props.location,
               },
@@ -113,7 +113,7 @@ function App() {
         <PrivateRoute path ="/question" component={ViewQuestion}/>
         <PrivateRoute path = "/add-post" component={AddPost}/>
 
-        <ProtectedRoute path={"/auth"} exact component={Auth} />
+        <ProtectedRoute path={"/"} exact />
 
 
       </Switch>

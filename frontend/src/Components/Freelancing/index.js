@@ -15,7 +15,7 @@ function Freelancing() {
       },
     };
     await axios.get("/api/freelancing/getAllRecord", {}, config).then((res) => {
-      setData(res?.data?.response || [])
+      setData(res?.data || [])
     }).catch(err =>{
       console.log(err);
     })
@@ -23,9 +23,12 @@ function Freelancing() {
   return (
     <div className="freelancing">
       <SideBar />
-      <div className="content">
-        <div className="button" onClick={() => history.push("/register-freelancing")} >
-            Add Freelancing
+      <div className="content" style={{ width: "100%", height: "100%" }}>
+        <div style={{ width: "100%", textAlign: "right", display: 'flex', alignItems: 'end' }}>
+        <div className="button" onClick={() => history.push("/register-freelancing")}
+         style={{ width: "100%", "maxWidth": "unset", "textAlign": "center", "padding": "30px" }} >
+            Register as freelancer
+        </div>
         </div>
         <div>
         {

@@ -4,11 +4,7 @@ const router = express.Router();
 const UserModal = require("../models/User");
 
 router.post("/", async (req, res) => {
-  const userData = new UserModal({
-    uid: req.body.uid,
-    email: req.body.email,
-    profileUrl: req.body.photoURL
-  });
+  const userData = new UserModal(req.body);
   await userData
     .save()
     .then((doc) => {
@@ -83,7 +79,7 @@ router.get("/", async (req, res) => {
     //     workExperience: req.body.workExperience
     //   });
   await UserModal
-    .findOneAndUpdate({ uid: userId.toString() }, {$set: req.body})
+    .findOneAndUpdate({ uid: userId.toString() }, req.body)
     .then((doc) => {
       res.status(201).send(doc);
     })

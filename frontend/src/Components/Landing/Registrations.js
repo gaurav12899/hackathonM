@@ -96,14 +96,11 @@ function Registrations(props) {
     onSubmit: async(values) =>{
         console.log("values", values);
         let payload = values;
+        payload.uid = state.user.uid;
+        payload.profilePic = state.user.photo;
         payload.interests = [values.intrest1, values.intrest2, values.intrest3].join(',');
         console.log("data", data);
-        await axios({
-            method: 'put',
-            url: `/api/user/${state.user.uid}`,
-            data: payload, // you are sending body instead
-            headers: { "Content-Type": "applications/json" },
-        })
+        await axios.put(`/api/user/${state.user.uid}`, payload)
         .then((res) => {
             if (res) {
                 history.push("/");
@@ -115,7 +112,7 @@ function Registrations(props) {
     },
   });
 
-  console.log("formik", formik);
+  console.log("user", state.user);
   return (
     <div>
       <form onSubmit={formik.handleSubmit}>

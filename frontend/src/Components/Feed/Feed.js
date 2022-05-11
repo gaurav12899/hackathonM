@@ -19,6 +19,14 @@ function Feed() {
       });
     }
 
+    const getPostsFiltered = (search) => {
+      axios.get("/api/post/filter/" + search).then((res) => {
+        setPosts(res.data.reverse());
+      }).then((res) => {
+        setPosts(res.data);
+      });
+    }
+
     useEffect(() => {
         async function getQuestion() {
           await axios.get("/api/question").then((res) => {
@@ -41,7 +49,7 @@ function Feed() {
             </div>
             
             {/*TweetBox */}
-            <TweetBox/>
+            <TweetBox onSearchClick={(searchText) => { getPostsFiltered(searchText) }} onClearFilter={ () => getPosts() } />
 
             {/* //<Post/> */}
             {/*Post */}

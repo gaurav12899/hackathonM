@@ -8,9 +8,27 @@ import Grid from "@material-ui/core/Grid";
 import Avatar from "@mui/material/Avatar";
 import "./Cards.css";
 import SideBar from "../SideBar/SideBar";
+import { useEffect } from "react";
+import axios from "axios";
+import { useState } from "react";
 
 function FreelanceCard({ details }) {
+  
   const history = useHistory();
+  const [ freelancers, setFreelancers ] = useState([]);
+
+  const getFreelancers = () => {
+    axios.get("/api/freelancing/getAllRecord").then((res) => {
+      setFreelancers(res.data.reverse());
+    });
+  }
+
+  useEffect(() => {
+    getFreelancers();
+  }, []);
+
+  console.log('freelancers', freelancers);
+
   return (
     <div className="freelanceCard">
       <Box
@@ -30,7 +48,7 @@ function FreelanceCard({ details }) {
               </div>
             </Grid>
           </Box>
-          {[1, 2].map((item) => {
+          {freelancers?.map((item) => {
             return (
               <>
                 <Grid item xs={4}>
@@ -41,18 +59,18 @@ function FreelanceCard({ details }) {
                   >
                     <Avatar
                       alt="Semy Sharp"
-                      src="/static/images/avatar/1.jpg"
+                      src={details?.user?.profilePic}
                       sx={{ width: 70, height: 70, marginTop:1 }}
                     />
                     <CardContent className="card-contaent">
                       <div className="card-text">
                         <Typography variant="h6" component="div">
                           {" "}
-                          Name :
+                          Name: 
                         </Typography>
                         <Typography variant="h6" component="div">
                           {" "}
-                          Savan Kheni
+                          { details?.user?.firstName } { details?.user?.lastName }
                         </Typography>
                       </div>
                       <div className="card-text">

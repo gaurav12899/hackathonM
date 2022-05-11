@@ -1,8 +1,8 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const router = express.Router();
-
 const freelancingDB = require("../models/Freelancing");
+const userModel = require("../models/User");
 
 router.post("/add", async (req, res) => {
   try {
@@ -16,7 +16,7 @@ router.post("/add", async (req, res) => {
       })
       .catch((err) => {
         res.status(400).send({
-          message: "Bad format",
+          message: "Bad format" + err.message,
         });
       });
   } catch (err) {
@@ -28,16 +28,22 @@ router.post("/add", async (req, res) => {
 
 router.get("/getAllRecord", async (req, res) => {
     try {
-      await freelancingDB.find({})
-        .then((doc) => {
-          res.status(200).send({
-            response: doc,  
-            message: "success",
-          });
+      freelancingDB.find({}).lean()
+        .then(async (doc) => {
+
+          for (let i = 0; i < doc.length; i++) {
+            debugger
+            console.log('doc[i]', doc[i]);
+            let data = await userModel.findOne({ uid: doc[i].uid }).lean();
+            debugger
+            doc[i]['user'] = data;
+          }
+
+          res.status(200).send(doc);
         })
         .catch((err) => {
           res.status(400).send({
-            message: "Bad format",
+            message: "Bad format " + err.message,
           });
         });
     } catch (err) {

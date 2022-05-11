@@ -54,32 +54,35 @@ router.post("/", imageUpload.single('image'), async (req, res) => {
     });
 });
 
+router.get("/filter/:search", async (req, res) => {
+  
+  let regex = new RegExp(req.params.search,'i');
+
+  postModel.find({ $and: [ { $or: [{title: regex },{description: regex}] } ] } ).lean()
+    .then(async (doc) => {
+      try {
+        for (let i = 0; i < doc.length; i ++) {
+          let likesData = await likesModel.findOne({ post: doc[i]._id }).lean();
+          doc[i]['likes'] = [];
+          if (likesData) {
+            doc[i]['likes'] = likesData.likes
+          }
+        }
+          res.status(200).send(doc);
+      } catch (errrr) {
+        throw errrr;
+      }
+      
+    })
+    .catch((err) => {
+      res.status(400).send({
+        message: "Bad Request " + err.message,
+        err
+      });
+    });
+});
+
 router.get("/", async (req, res) => {
-  // const model = new postModel({
-  //   title: req.body.title,
-  //   description: req.body.description,
-  //   tags: req.body.tags,
-  //   user: req.body.user
-  // });
-
-
-  // var aggregateQuery = postModel.aggregate([{
-  //   $lookup: {from: "Post", //or Races.collection.name
-  //   localField: "_id",
-  //   foreignField: "post",
-  //   as: "likes"
-  // }}]);
-  
-  // aggregateQuery.then((doc) => {
-  //   res.status(200).send(doc);
-  // }).catch((e) => {
-  //   res.status(400).send({
-  //     message: "Bad Request",
-  //     error: e
-  //   });
-  // });
-
-  
   postModel.find({}).lean()
     .then(async (doc) => {
       try {

@@ -5,6 +5,7 @@ const FreelancingSchema = new mongoose.Schema({
   alternativeContact: {type: String, required: false},
   workExperience: {type: Number, required: true},
   hourlyRate: {type: Number, required: true},
+  uid: { type: String, required: true }
 }, {timestamps: true});
 
 module.exports = mongoose.model("Freelancing", FreelancingSchema);
