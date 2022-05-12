@@ -18,24 +18,22 @@ const arrayToggleId = (arr, id) => {
 
 router.post("/liketoggle", async (req, res) => {
   let { userId, commentId } = req.body;
-  // debugger
   try {
     
     const postData = await postCommentLikeModel.findOne({
-      commentId: mongoose.Types.ObjectId(req.body.postId),
+      commentId: mongoose.Types.ObjectId(req.body.commentId),
     }).lean();
 
     if (postData) {
       postData.likes = arrayToggleId(postData.likes, userId);
-      const response = await postCommentLikeModel.findOneAndUpdate({ commentId }, postData, { new: true });
+      const response = await postCommentLikeModel.findOneAndUpdate({ commentId: mongoose.Types.ObjectId(commentId) }, postData, { new: true });
       res.status(201).send({ response, message: "Your like added successfully" });
     } else {
-      await postCommentLikeModel
-        .create({
-          commentId,
-          likes: [ userId ],
-        })
-        .then((doc) => {
+      let model = new postCommentLikeModel({
+        commentId,
+        likes: [ userId ],
+      });
+        model.save().then((doc) => {
           res.status(201).send({
             response: doc,
             message: "Your like added successfully",

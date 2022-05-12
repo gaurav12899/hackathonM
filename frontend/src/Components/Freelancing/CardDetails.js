@@ -5,6 +5,7 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import SideBar from "../SideBar/SideBar";
+import moment from 'moment';
 import "./Freelancing.css";
 
 function CardDetails(props) {
@@ -40,7 +41,7 @@ function CardDetails(props) {
       ) : (
         <Card
           sx={{
-            width: "20%",
+            width: "30%",
             boxShadow: 5,
             marginTop: "50px",
             borderRadius: 3,
@@ -57,7 +58,7 @@ function CardDetails(props) {
                 </Typography>
                 <Typography variant="h5" className="cardFild" component="div">
                   {" "}
-                  Savan
+                  {details?.user?.firstName}
                 </Typography>
               </div>
               <div className="card-details">
@@ -67,7 +68,7 @@ function CardDetails(props) {
                 </Typography>
                 <Typography variant="h5" className="cardFild" component="div">
                   {" "}
-                  Kheni
+                  {details?.user?.lastName}
                 </Typography>
               </div>
               <div className="card-details">
@@ -77,7 +78,7 @@ function CardDetails(props) {
                 </Typography>
                 <Typography variant="h5" className="cardFild" component="div">
                   {" "}
-                  20-9-1998
+                  {moment(details?.user?.dob).format('DD-MM-YYYY')}
                 </Typography>
               </div>
               <div className="card-details">
@@ -87,7 +88,7 @@ function CardDetails(props) {
                 </Typography>
                 <Typography variant="h5" className="cardFild" component="div">
                   {" "}
-                  Male
+                  {details?.user?.gender}
                 </Typography>
               </div>
               <div className="card-details">

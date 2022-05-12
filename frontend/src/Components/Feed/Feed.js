@@ -36,7 +36,7 @@ function Feed() {
         getQuestion();
         getPosts();
       }, []);
-      console.log("posts", posts);
+
     return (
         <div className="feed">
             {/*Header */}
@@ -70,12 +70,29 @@ function Feed() {
                 image={post.image} 
                 postId={post._id} 
                 likes={post.likes} 
+                comments={post.comments || []}
                 OnLike={(data) => {
                   let list = [...posts];
                   list[index].likes = data.likes;
                   console.log('list[index]', list[index]);
                   setPosts(list);
                 }}
+                onComment={(data) => {
+                  let list = [...posts];
+                  list[index].comments = data;
+                  setPosts(list);
+                }}
+                inputshowin={() => {
+                  let list = [...posts];
+                  if(list[index].input === true){
+                    list[index].input = false
+                  }else{
+                  list[index].input = true;
+                  }
+                  setPosts(list);
+                }}
+                input={post.input}
+                getPosts={getPosts}
                  />
             ))}
         

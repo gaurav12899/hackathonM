@@ -2,10 +2,12 @@ const mongoose = require("mongoose");
 const LikeSchema = new mongoose.Schema({
   commentId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "Post",
+    ref: "PostComment",
+    required: true
   },
   likes: {
-    type: Array
+    type: Array,
+    required: true
   }
 }, {timestamps: true});
 

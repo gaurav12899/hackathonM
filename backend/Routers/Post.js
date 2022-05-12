@@ -38,9 +38,8 @@ const imageUpload = multer({
 
 const bindCommentsData = async (postId) => {
   let comments = await postCommentModel.find({ postId: mongoose.Types.ObjectId(postId) }).lean();
-  
   for (let i = 0; i < comments.length; i++) {
-    let commentLikes = await postCommentLikeModel.findOne({ commentId: comments[i]._id });
+    let commentLikes = await postCommentLikeModel.findOne({ commentId: mongoose.Types.ObjectId(comments[i]._id.toString()) });
     if (commentLikes) {
       comments[i].likes = commentLikes.likes;
     }
@@ -110,7 +109,7 @@ router.get("/", async (req, res) => {
           if (likesData) {
             doc[i]['likes'] = likesData.likes
           }
-          doc[i]['comments'] = await bindCommentsData(doc[i]._id);
+          doc[i]['comments'] = await bindCommentsData(doc[i]._id.toString());
         }
           res.status(200).send(doc);
       } catch (errrr) {

@@ -1,4 +1,4 @@
-import { Avatar } from "@mui/material";
+import { Avatar, Button } from "@mui/material";
 import React, { useState } from "react";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 // import RepeatIcon from '@mui/icons-material/Repeat';
@@ -24,6 +24,7 @@ import { red } from "@mui/material/colors";
 import ShareIcon from "@mui/icons-material/Share";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
+import TextField from "@mui/material/TextField";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -38,20 +39,11 @@ const ExpandMore = styled((props) => {
 
 function Post(props) {
   const [isLiked, setIsLiked] = useState({ state: true, number: "0" });
-  const [loading, setLoading] = useState(false);
-  const {
-    title,
-    description,
-    tags,
-    user,
-    image,
-    postId,
-    likes,
-    comments,
-    OnLike,
-  } = props;
-  const AuthUser = useSelector(selectUser);
   const [expanded, setExpanded] = React.useState(false);
+  const [ loading, setLoading ] = useState(false);
+  const { title, description, tags, user, image, postId, likes, comments, OnLike, inputshowin, input, onComment, getPosts } = props;
+  const AuthUser = useSelector(selectUser);
+  const [comment, setComment] = useState('');
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -83,7 +75,64 @@ function Post(props) {
     setIsLiked({ ...isLiked, like: !isLiked.like });
   };
 
-  console.log("image", image);
+  const onCommentLikeChange = async (commentId) => {
+
+    if (loading) return;
+
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    setLoading(true);
+    axios
+        .post("/api/postCommentLike/liketoggle", {commentId, userId: AuthUser.uid}, config)
+        .then((res) => {
+          if (onComment) {
+            let commentsList = comments.map((rec) => {
+              if (rec._id == commentId) {
+                rec['likes'] = res.data.response.likes;
+              }
+              return rec;
+            });
+            onComment(commentsList);
+          }
+          setLoading(false);
+        })
+        .catch((err) => {
+          console.log(err);
+          setLoading(false);
+        });
+    // setIsLiked({...isLiked, like: !isLiked.like});
+  }
+
+  const handlechange = (e) => {
+    setComment(e.target.value);
+  }
+
+  const addComment = () => {
+    if(comment !== ""){
+      handleCommentappi();
+    }
+  }
+
+  const handleCommentappi = () => {
+    const data = {
+      userId: user.uid,
+      postId: postId,
+      comment: comment
+    }
+    axios.post("/api/postComment/", data).then((res) => {
+      // setPosts(res.data.reverse());
+      getPosts();
+      setComment("");
+    }).then((res) => {
+      // setPosts(res.data);
+      console.log("res", res);
+    });
+  }
+
+
   return (
     <>
       <Card sx={{ Width: "100%", boxShadow: 5, marginBottom: 3}}>
@@ -144,6 +193,58 @@ function Post(props) {
           </CardContent>
         </Collapse>
       </Card>
+  
+    <div className="post__footer">
+          <ChatBubbleOutlineIcon fontSize="small" onClick={() => inputshowin(postId)} />
+          ({ comments.length })
+          {likes?.indexOf(AuthUser.uid) > -1 ? (
+            <FavoriteIcon
+              fontSize="small"
+              onClick={() => onLikeChange(false)}
+            />
+          ) : (
+            <FavoriteBorderIcon
+              fontSize="small"
+              onClick={() => onLikeChange(true)}
+            />
+          )}
+          ({ likes.length })
+          {/* <PublishIcon fontSize="small"/> */}
+        </div>
+
+        {
+          comments.map((commentRecord) => {
+            return <>
+              <span>{ commentRecord.comment }</span> ({ commentRecord['likes']?.length })
+              {commentRecord['likes']?.indexOf(AuthUser.uid) > -1 ? (
+                <FavoriteIcon
+                  fontSize="small"
+                  onClick={() => onCommentLikeChange(commentRecord._id)}
+                />
+              ) : (
+                <FavoriteBorderIcon
+                  fontSize="small"
+                  onClick={() => onCommentLikeChange(commentRecord._id)}
+                />
+              )}
+              <br />
+            </>;
+          })
+        }
+
+        {input &&
+            <TextField 
+              id="skill1" 
+              label="Enter comment" 
+              variant="outlined"
+              name="comment"
+              value={comment}
+              onChange={handlechange}
+            />
+          }
+          <Button onClick={() => addComment()}>ADD Comments</Button>
+      {/* </div>
+    </div> */}
     </>
     // <div className="post">
     //   <div className="post__avatar">
