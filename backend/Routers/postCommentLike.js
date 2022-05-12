@@ -1,6 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const postCommentLikeModel = require("../models/postCommentLike");
+const postCommentLikeModel = require("../Models/postCommentLike");
 
 const router = express.Router();
 

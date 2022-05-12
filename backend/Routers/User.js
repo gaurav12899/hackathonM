@@ -1,7 +1,7 @@
 const express = require("express");
 const { default: mongoose } = require("mongoose");
 const router = express.Router();
-const UserModal = require("../models/User");
+const UserModal = require("../Models/User");
 
 router.post("/", async (req, res) => {
   const userData = new UserModal(req.body);

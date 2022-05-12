@@ -1,8 +1,8 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const router = express.Router();
-const freelancingDB = require("../models/Freelancing");
-const userModel = require("../models/User");
+const freelancingDB = require("../Models/Freelancing");
+const userModel = require("../Models/User");
 
 router.post("/add", async (req, res) => {
   try {

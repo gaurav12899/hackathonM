@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const answerDB = require("../models/Answers");
+const answerDB = require("../Models/Answers");
 
 router.post("/", async (req, res) => {
   const answerData = new answerDB({

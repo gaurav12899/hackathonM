@@ -2,7 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const router = express.Router();
 
-const articleDB = require("../models/Article");
+const articleDB = require("../Models/Article");
 
 router.post("/add", async (req, res) => {
   try {

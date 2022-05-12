@@ -1,7 +1,7 @@
 
 const express = require("express");
 const router = express.Router();
-const profileADB = require("../models/UpdateProfileA");
+const profileADB = require("../Models/UpdateProfileA");
 
 router.post("/", async (req, res) => {
   const updateProfileAData = new profileADB({

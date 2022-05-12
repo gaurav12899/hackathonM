@@ -1,12 +1,12 @@
 const express = require("express");
 const router = express.Router();
-const postModel = require("../models/Post");
-const likesModel = require("../models/Likes");
-const postCommentModel = require("../models/postComment");
-const postCommentLikeModel = require("../models/postCommentLike");
+const postModel = require("../Models/Post");
+const likesModel = require("../Models/Likes");
+const postCommentModel = require("../Models/postComment");
+const postCommentLikeModel = require("../Models/postCommentLike");
 
 const multer  = require('multer');
-const { db } = require("../models/Likes");
+const { db } = require("../Models/Likes");
 const { default: mongoose } = require("mongoose");
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
