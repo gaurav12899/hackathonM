@@ -125,5 +125,31 @@ router.get("/", async (req, res) => {
     });
 });
 
+router.get("/:id", async (req, res) => {
+  postModel.findOne({ _id: req.params.id }).lean()
+    .then(async (doc) => {
+      try {
+        
+          let likesData = await likesModel.findOne({ post: doc._id }).lean();
+          doc['likes'] = [];
+          if (likesData) {
+            doc['likes'] = likesData.likes
+          }
+          doc['comments'] = await bindCommentsData(doc._id.toString());
+        
+          res.status(200).send(doc);
+      } catch (errrr) {
+        throw errrr;
+      }
+      
+    })
+    .catch((err) => {
+      res.status(400).send({
+        message: "Bad Request",
+        err
+      });
+    });
+});
+
 
 module.exports = router;
