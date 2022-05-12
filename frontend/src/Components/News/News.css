@@ -48,3 +48,8 @@
 .newsCard{
     margin-top: 5px !important;
 }
+
+.newsCard img {
+    max-height: 265px;
+    object-fit: cover;
+}

@@ -19,7 +19,7 @@ function News() {
     }, [])
     
     return (
-        <div className="News">
+        <div className="News" style={{ height: "calc(100vh - 50px)", overflowY: "scroll" }}>
             <h2>Current News</h2>
            
             {news.map((theNews)=>(

@@ -155,12 +155,13 @@ function ArticleForm() {
                     {formik.errors.body}
                   </div>
                 </div>
+                <button className='button addPostBtn' type="submit">Add Article</button>
               </div>
-            <button className='button addPostBtn' type="submit">Add Article</button>
+            
             </div>
-            <button className="button" type="submit">
+            {/* <button className="button" type="submit">
               Add Article
-            </button>
+            </button> */}
           </div>
         </div>
       </form>
