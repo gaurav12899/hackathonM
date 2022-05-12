@@ -43,7 +43,7 @@ function CardDetails(props) {
       ) : (
         <Card
           sx={{
-            width: "30%",
+            width: "50%",
             boxShadow: 5,
             marginTop: "50px",
             borderRadius: 3,

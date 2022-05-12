@@ -1,6 +1,6 @@
 .News{
     flex: 0.35;
-    min-width: 500px;
+    /* min-width: 500px; */
     margin-top: 10px;
     padding-left: 20px;
     padding-right: 20px;

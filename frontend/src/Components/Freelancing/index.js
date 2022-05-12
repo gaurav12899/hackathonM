@@ -6,19 +6,19 @@ import FreelanceCard from "./Cards.js";
 import './Freelancing.css';
 
 function Freelancing() {
-  const [data, setData] = useState([]);
+  // const [data, setData] = useState([]);
   const history = useHistory();
   useEffect(async () =>{
-    const config = {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
-    await axios.get("/api/freelancing/getAllRecord", {}, config).then((res) => {
-      setData(res?.data || [])
-    }).catch(err =>{
-      console.log(err);
-    })
+    // const config = {
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    // };
+    // await axios.get("/api/freelancing/getAllRecord", {}, config).then((res) => {
+    //   setData(res?.data || [])
+    // }).catch(err =>{
+    //   console.log(err);
+    // })
   }, []);
   return (
     <div className="freelancing">
@@ -31,9 +31,7 @@ function Freelancing() {
         </div>
         </div>
         <div>
-        {
-          data && data.length > 0 ? data.map(freelancing =><FreelanceCard details={freelancing} />) : null
-        }
+          <FreelanceCard  />
         </div>
       </div>
     </div>

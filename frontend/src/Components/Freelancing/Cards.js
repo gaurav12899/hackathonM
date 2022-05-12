@@ -11,6 +11,7 @@ import SideBar from "../SideBar/SideBar";
 import { useEffect } from "react";
 import axios from "axios";
 import { useState } from "react";
+import { Chip } from "@mui/material";
 
 function FreelanceCard({ details }) {
   
@@ -33,7 +34,7 @@ function FreelanceCard({ details }) {
         sx={{ flexGrow: 1, margin: 5, marginTop:'0px' }}
         // onClick={() =>history.push({pathname: `/freelancer/view/${details._id}`, state: {details}})}
       >
-        <Grid container spacing={2} columns={{ xs: 4, sm: 8, md: 12 }}>
+        <Grid container spacing={2} columns={{ xs: 12 }}>
           <Box
             sx={{ flexGrow: 1, margin: 5, width: "100%" }}
             // onClick={() =>history.push({pathname: `/freelancer/view/${details._id}`, state: {details}})}
@@ -49,8 +50,7 @@ function FreelanceCard({ details }) {
           {freelancers?.map((item) => {
             console.log("item",item)
             return (
-              <>
-                <Grid item xs={4}>
+                <Grid item xs={12} lg={6}>
                   <Card
                     sx={{ boxShadow: 5, borderRadius: 3 }}
                     className="cards"
@@ -75,17 +75,24 @@ function FreelanceCard({ details }) {
                       <div className="card-text">
                         <Typography variant="h6" component="div">
                           {" "}
-                          Skill :{" "}
+                          Skill:&nbsp;
                         </Typography>
-                        <Typography variant="h6" component="div">
+
+                        {
+                          item?.skill?.map((skill) => {
+                            return <><Chip label={skill} />&nbsp;</>
+                          })
+                        }
+
+                        
+                        {/* <Typography variant="h6" component="div">
                           {" "}
                           {item?.skill?.toString()}
-                        </Typography>
+                        </Typography> */}
                       </div>
                     </CardContent>
                   </Card>
                 </Grid>
-              </>
             );
           })}
         </Grid>
