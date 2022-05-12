@@ -94,6 +94,7 @@
     height: 80vh;
     margin-left: auto !important;
     margin-right: auto !important;
+    overflow-y: scroll !important;
   }
   
   .card-text{
