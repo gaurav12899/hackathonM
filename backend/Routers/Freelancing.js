@@ -53,8 +53,12 @@ router.get("/getAllRecord", async (req, res) => {
 
 router.get("/getRecord/:id", async (req, res) => {
     try {
-      await freelancingDB.findOne({_id: mongoose.Types.ObjectId(req.params.id)})
-        .then((doc) => {
+      await freelancingDB.findOne({_id: mongoose.Types.ObjectId(req.params.id)}).lean()
+        .then(async (doc) => {
+
+          let data = await userModel.findOne({ uid: doc.uid }).lean();
+          doc['user'] = data;
+
           res.status(200).send({
             response: doc,  
             message: "success",
