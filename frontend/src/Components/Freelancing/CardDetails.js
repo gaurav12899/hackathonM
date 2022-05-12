@@ -86,6 +86,16 @@ function CardDetails(props) {
               <div className="card-details">
                 <Typography variant="h6" className="cardLable" component="div">
                   {" "}
+                  AlternativeContact :
+                </Typography>
+                <Typography variant="h5" className="cardFild" component="div">
+                  {" "}
+                  {details?.alternativeContact}
+                </Typography>
+              </div>
+              <div className="card-details">
+                <Typography variant="h6" className="cardLable" component="div">
+                  {" "}
                   Community :
                 </Typography>
                 <Typography variant="h5" className="cardFild" component="div">
