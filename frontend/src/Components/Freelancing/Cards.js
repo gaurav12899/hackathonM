@@ -55,7 +55,7 @@ function FreelanceCard({ details }) {
                   <Card
                     sx={{ boxShadow: 5, borderRadius: 3 }}
                     className="cards"
-                    onClick={() => history.push("/freelancer")}
+                    onClick={() => history.push(`/freelancer/${item._id}`)}
                   >
                     <Avatar
                       alt="Semy Sharp"

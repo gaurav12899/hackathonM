@@ -29,6 +29,7 @@ import ArticleForm from './Components/Article/ArticleForm';
 import Article from './Components/Article/index';
 import Registrations from './Components/Landing/Registrations';
 import axios from 'axios';
+import ArticleView from './Components/Article/ArticleView';
 // import UpdateProfileA from './Components/Profile/UpdateProfileA';
 function App() {
   const user = useSelector(selectUser);
@@ -104,9 +105,10 @@ function App() {
         <PrivateRoute path="/qna" component={ExploreQuestions} />
         <PrivateRoute path="/freelancing" component={Freelancing} />
         <PrivateRoute path = "/register-freelancing" component={FreelancingRegister}/>
+        <PrivateRoute path="/freelancer" component={CardDetails} />
         <PrivateRoute path="/article" component={Article} />
         <PrivateRoute path="/article-form" component={ArticleForm} />
-        <PrivateRoute path="/freelancer" component={CardDetails} />
+        <PrivateRoute path="/article-view/:id" component={ArticleView} />
 
         {/* <PrivateRoute path="/bookmarks" component={Bookmark} /> */}
         <PrivateRoute path ="/add-question" component={Question}/>

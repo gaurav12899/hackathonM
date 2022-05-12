@@ -79,19 +79,21 @@ function ArticleForm() {
     },
     validate,
     onSubmit(values){
-      axios({
-        method: 'post',
-        url: '/api/article/add',
-        data: values, // you are sending body instead
-        headers: { "Content-Type": "applications/json" },
-    })
-      .then((res) => {
-        history.push("/article");
-      })
-      .catch((err) => {
-        history.push("/");
-        console.log(err);
-      });
+      debugger
+      console.log("values",values);
+      axios
+        .post("/api/article/add", {
+          title: values.title,
+          body: values.body,
+        })
+        .then(function (response) {
+          if(response){
+            history.push('/article')
+          }
+        })
+        .catch(function (error) {
+          console.log("error", error);
+        });
     },
   });
 

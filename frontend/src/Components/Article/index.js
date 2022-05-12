@@ -29,6 +29,7 @@ function Article() {
         console.log(err);
       });
   }, []);
+  console.log("details", details);
   return (
     <div className="articleIndex">
       <SideBar />
@@ -43,7 +44,7 @@ function Article() {
         {details && details.length > 0
           ? details.map((article, i) => (
               <div className="articleCard" key={i}>
-                <Card sx={{ width: "90%" }} className="card">
+                <Card sx={{ width: "90%" }} className="card" onClick={() => history.push(`/article-view/${article._id}`)}>
                   <CardContent>
                     <Typography variant="h5" component="div">
                       {article.title}
@@ -51,13 +52,12 @@ function Article() {
                   </CardContent>
                 </Card>
 
-                <Card sx={{ width: "90%" }} className="card">
+                {/* <Card sx={{ width: "90%" }} className="card">
                   <CardContent>
                     <Typography variant="h5" component="div" dangerouslySetInnerHTML={{ __html: article.body }}>
-                      {/* {article.body} */}
                     </Typography>
                   </CardContent>
-                </Card>
+                </Card> */}
               </div>
             ))
           : null}
