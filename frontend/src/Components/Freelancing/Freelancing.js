@@ -45,7 +45,6 @@ function FreelancingRegister() {
     }).catch(err =>{
       console.log(err);
     })
-    console.log("values", values);
   };
   const formik = useFormik({
     initialValues: {
@@ -67,12 +66,6 @@ function FreelancingRegister() {
         .required("Work Experience is required"),
       hourlyRate: Yup.string()
         .required("Hourly Rate is required"),
-      // firstName: Yup.string()
-      //   .max(20, "First Name must be long")
-      //   .required("First Name is required"),
-      // lastName: Yup.string()
-      //   .max(30, "Last Name must be long")
-      //   .required("Last name is required"),
     }),
     onSubmit: handleSubmit,
   });

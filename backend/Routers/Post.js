@@ -2,9 +2,12 @@ const express = require("express");
 const router = express.Router();
 const postModel = require("../models/Post");
 const likesModel = require("../models/Likes");
+const postCommentModel = require("../models/postComment");
+const postCommentLikeModel = require("../models/postCommentLike");
 
 const multer  = require('multer');
 const { db } = require("../models/Likes");
+const { default: mongoose } = require("mongoose");
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, './uploads')
@@ -32,6 +35,20 @@ const imageUpload = multer({
       cb(undefined, true);
   },
 });
+
+const bindCommentsData = async (postId) => {
+  let comments = await postCommentModel.find({ postId: mongoose.Types.ObjectId(postId) }).lean();
+  
+  for (let i = 0; i < comments.length; i++) {
+    let commentLikes = await postCommentLikeModel.findOne({ commentId: comments[i]._id });
+    if (commentLikes) {
+      comments[i].likes = commentLikes.likes;
+    }
+  }
+
+  return comments;
+
+}
 
 router.post("/", imageUpload.single('image'), async (req, res) => {
   console.log("file_name", req.file);
@@ -67,6 +84,7 @@ router.get("/filter/:search", async (req, res) => {
           if (likesData) {
             doc[i]['likes'] = likesData.likes
           }
+          doc[i]['comments'] = await bindCommentsData(doc[i]._id);
         }
           res.status(200).send(doc);
       } catch (errrr) {
@@ -92,6 +110,7 @@ router.get("/", async (req, res) => {
           if (likesData) {
             doc[i]['likes'] = likesData.likes
           }
+          doc[i]['comments'] = await bindCommentsData(doc[i]._id);
         }
           res.status(200).send(doc);
       } catch (errrr) {

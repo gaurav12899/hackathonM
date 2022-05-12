@@ -27,8 +27,7 @@ function FreelanceCard({ details }) {
     getFreelancers();
   }, []);
 
-  console.log('freelancers', freelancers);
-
+console.log("freelancers", freelancers);
   return (
     <div className="freelanceCard">
       <Box
@@ -55,11 +54,11 @@ function FreelanceCard({ details }) {
                   <Card
                     sx={{ boxShadow: 5, borderRadius: 3 }}
                     className="cards"
-                    onClick={() => history.push(`/freelancer/${item._id}`)}
+                    onClick={() => history.push(`/freelancer/${details._id}`)}
                   >
                     <Avatar
                       alt="Semy Sharp"
-                      src={details?.user?.profilePic}
+                      src={item?.user?.profilePic}
                       sx={{ width: 70, height: 70, marginTop:1 }}
                     />
                     <CardContent className="card-contaent">
@@ -70,7 +69,7 @@ function FreelanceCard({ details }) {
                         </Typography>
                         <Typography variant="h6" component="div">
                           {" "}
-                          { details?.user?.firstName } { details?.user?.lastName }
+                          { item?.user?.firstName } { details?.user?.lastName }
                         </Typography>
                       </div>
                       <div className="card-text">
@@ -80,7 +79,7 @@ function FreelanceCard({ details }) {
                         </Typography>
                         <Typography variant="h6" component="div">
                           {" "}
-                          {details?.skill?.toString()}
+                          {item?.skill?.toString()}
                         </Typography>
                       </div>
                     </CardContent>

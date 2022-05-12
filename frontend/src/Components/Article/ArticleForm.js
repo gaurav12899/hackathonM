@@ -63,24 +63,22 @@ function ArticleForm() {
   const validate = (values) => {
     // debugger
     const errors = {};
-    if(!values.title){
+    if (!values.title) {
       errors.title = "Required";
     }
-    if(!values.body){
+    if (!values.body) {
       errors.body = "Required";
     }
     return errors;
-  }
+  };
 
   const formik = useFormik({
     initialValues: {
       title: "",
-      body: ""
+      body: "",
     },
     validate,
-    onSubmit(values){
-      debugger
-      console.log("values",values);
+    onSubmit(values) {
       axios
         .post("/api/article/add", {
           title: values.title,
@@ -104,67 +102,67 @@ function ArticleForm() {
 
   return (
     <>
-    <form onSubmit={formik.handleSubmit}>
-      <div className="add-post">
-        <div className="add-post-container">
-          <div className="head-title">
-            <h1>Create New Article</h1>
-          </div>
-          <div className="post-container">
-            <div className="post-options">
-              <div className="post-option">
-                <div className="title">
-                  <h3>Title</h3>
-                  <small>
-                    Be specific and imagine you are asking a question to another
-                    person
-                  </small>
-                  <TextField
-                    type="text"
-                    placeholder="eg. What is regression in machine learning"
-                    name="title"
-                    value={formik.values.title}
-                    onChange={formik.handleChange}
-                    error={formik.touched.title && Boolean(formik.errors.title)}
-                    helperText={formik.touched.title && formik.errors.title}
-                  />
-                  {/* {formik.errors.title} */}
+      <form onSubmit={formik.handleSubmit}>
+        <div className="add-post">
+          <div className="add-post-container">
+            <div className="head-title">
+              <h1>Create New Article</h1>
+            </div>
+            <div className="post-container">
+              <div className="post-options">
+                <div className="post-option">
+                  <div className="title">
+                    <h3>Title</h3>
+                    <small>
+                      Be specific and imagine you are asking a question to
+                      another person
+                    </small>
+                    <TextField
+                      type="text"
+                      placeholder="eg. What is regression in machine learning"
+                      name="title"
+                      value={formik.values.title}
+                      onChange={formik.handleChange}
+                      error={
+                        formik.touched.title && Boolean(formik.errors.title)
+                      }
+                      helperText={formik.touched.title && formik.errors.title}
+                    />
+                    {/* {formik.errors.title} */}
+                  </div>
                 </div>
-              </div>
-              <div className="post-option">
-                <div className="title">
-                  <h3>Body</h3>
-                  <small>
-                    Include all the information someone would need to answer
-                    your question
-                  </small>
+                <div className="post-option">
+                  <div className="title">
+                    <h3>Body</h3>
+                    <small>
+                      Include all the information someone would need to answer
+                      your question
+                    </small>
 
-                  <ReactQuill
-                    name="article"
-                    value={body}
-                    onChange={(value) =>{
-                      setBody(value);
-                      formik.setFieldValue('body', value);
-                    }}
-                    modules={Editor.modules}
-                    className="react-quill"
-                    theme="snow"
-                    // error={formik.touched.body && Boolean(formik.errors.body)}
-                    // helperText={formik.touched.body && formik.errors.body}
-                  />
-                  {formik.errors.body}
+                    <ReactQuill
+                      name="article"
+                      value={body}
+                      onChange={(value) => {
+                        setBody(value);
+                        formik.setFieldValue("body", value);
+                      }}
+                      modules={Editor.modules}
+                      className="react-quill"
+                      theme="snow"
+                      // error={formik.touched.body && Boolean(formik.errors.body)}
+                      // helperText={formik.touched.body && formik.errors.body}
+                    />
+                    {formik.errors.body}
+                  </div>
                 </div>
               </div>
             </div>
+            <button className="button" type="submit">
+              Add Article
+            </button>
           </div>
-          <button
-            className="button"
-            type="submit">
-            Add Article
-          </button>
         </div>
-      </div>
-    </form>
+      </form>
     </>
   );
 }
