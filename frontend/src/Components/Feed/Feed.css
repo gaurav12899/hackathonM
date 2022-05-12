@@ -5,7 +5,7 @@
     /* min-width: fit-content; */
     width: auto;
     overflow-y: scroll;
-    height: auto;
+    height: calc(100vh - 50px);
 }
 
 /* Hide scrollbar */
