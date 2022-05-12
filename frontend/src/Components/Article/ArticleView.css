@@ -9,7 +9,7 @@
 
 .articleCardview {
   border: 5px solid #EAEAEA;
-  margin: 50px;
+  margin: 70px;
 }
 
 .articleHeadline {
@@ -29,4 +29,5 @@
   width: 80% !important;
   margin-right: auto;
   margin-left: auto;
+  height: fit-content;
 }

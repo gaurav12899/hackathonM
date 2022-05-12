@@ -58,3 +58,13 @@
     
     
   }
+  .comentFild{
+    width:95% !important;
+    margin: 0px 20px !important;
+  }
+  .commentBtn{
+    background:#F5CF50 !important;
+    color:#fff !important;
+    padding:10px 20px !important;
+    margin:15px 20px !important;
+  }

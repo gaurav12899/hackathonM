@@ -25,6 +25,7 @@ import ShareIcon from "@mui/icons-material/Share";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import TextField from "@mui/material/TextField";
+import { useHistory } from "react-router-dom";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -40,10 +41,26 @@ const ExpandMore = styled((props) => {
 function Post(props) {
   const [isLiked, setIsLiked] = useState({ state: true, number: "0" });
   const [expanded, setExpanded] = React.useState(false);
-  const [ loading, setLoading ] = useState(false);
-  const { title, description, tags, user, image, postId, likes, comments, OnLike, inputshowin, input, onComment, getPosts } = props;
+  const [loading, setLoading] = useState(false);
+  const {
+    title,
+    description,
+    tags,
+    user,
+    image,
+    postId,
+    likes,
+    comments,
+    OnLike,
+    inputshowin,
+    input,
+    onComment,
+    getPosts,
+  } = props;
   const AuthUser = useSelector(selectUser);
-  const [comment, setComment] = useState('');
+  
+
+  const history = useHistory();
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -75,68 +92,11 @@ function Post(props) {
     setIsLiked({ ...isLiked, like: !isLiked.like });
   };
 
-  const onCommentLikeChange = async (commentId) => {
-
-    if (loading) return;
-
-    const config = {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
-    setLoading(true);
-    axios
-        .post("/api/postCommentLike/liketoggle", {commentId, userId: AuthUser.uid}, config)
-        .then((res) => {
-          if (onComment) {
-            let commentsList = comments.map((rec) => {
-              if (rec._id == commentId) {
-                rec['likes'] = res.data.response.likes;
-              }
-              return rec;
-            });
-            onComment(commentsList);
-          }
-          setLoading(false);
-        })
-        .catch((err) => {
-          console.log(err);
-          setLoading(false);
-        });
-    // setIsLiked({...isLiked, like: !isLiked.like});
-  }
-
-  const handlechange = (e) => {
-    setComment(e.target.value);
-  }
-
-  const addComment = () => {
-    if(comment !== ""){
-      handleCommentappi();
-    }
-  }
-
-  const handleCommentappi = () => {
-    const data = {
-      userId: user.uid,
-      postId: postId,
-      comment: comment
-    }
-    axios.post("/api/postComment/", data).then((res) => {
-      // setPosts(res.data.reverse());
-      getPosts();
-      setComment("");
-    }).then((res) => {
-      // setPosts(res.data);
-      console.log("res", res);
-    });
-  }
-
-
   return (
     <>
-      <Card sx={{ Width: "100%", boxShadow: 5, marginBottom: 3}}>
-        <CardHeader sx={{ padding: '0px' }}
+      <Card sx={{ Width: "100%", boxShadow: 5, marginBottom: 3 }}>
+        <CardHeader
+          sx={{ padding: "0px" }}
           avatar={
             <div className="post__avatar">
               <Avatar
@@ -148,7 +108,7 @@ function Post(props) {
             </div>
           }
           title={user?.displayName || "Anonymous"}
-          subheader={ user?.email }
+          subheader={user?.email}
         />
         <CardMedia
           component="img"
@@ -160,6 +120,7 @@ function Post(props) {
           <Typography variant="body2" color="text.secondary">
             <b>
               <h2>{title}</h2>
+              <h4 style={{color: '#F5CF50', FontWeight: '700', fontSize:'20px', margin:'0px', padding:"0px", float:"right"}}> <span onClick={() => history.push('/post/' + postId)}>View More</span></h4>
             </b>
           </Typography>
         </CardContent>
@@ -178,24 +139,35 @@ function Post(props) {
             )}
             ({likes.length})
           </IconButton>
-          <ExpandMore
+
+          <IconButton aria-label="add to favorites">
+          <ChatBubbleOutlineIcon
+              style={{ marginLeft: 30 }}
+              fontSize="small"
+              onClick={() => history.push('/post/' + postId)}
+            />
+            ({comments.length})
+            </IconButton>  
+
+
+          {/* <ExpandMore
             expand={expanded}
             onClick={handleExpandClick}
             aria-expanded={expanded}
             aria-label="show more"
           >
             <ExpandMoreIcon />
-          </ExpandMore>
+          </ExpandMore> */}
         </CardActions>
-        <Collapse in={expanded} timeout="auto" unmountOnExit>
+        {/* <Collapse in={expanded} timeout="auto" unmountOnExit>
           <CardContent>
             <Typography paragraph>{Parser(description)}</Typography>
           </CardContent>
-        </Collapse>
+        </Collapse> */}
       </Card>
-  
-    <div className="post__footer">
-          <ChatBubbleOutlineIcon fontSize="small" onClick={() => inputshowin(postId)} />
+
+      <div className="post__footer">
+        {/* <ChatBubbleOutlineIcon fontSize="small" onClick={() => inputshowin(postId)} />
           ({ comments.length })
           {likes?.indexOf(AuthUser.uid) > -1 ? (
             <FavoriteIcon
@@ -208,11 +180,11 @@ function Post(props) {
               onClick={() => onLikeChange(true)}
             />
           )}
-          ({ likes.length })
-          {/* <PublishIcon fontSize="small"/> */}
-        </div>
+          ({ likes.length }) */}
+        {/* <PublishIcon fontSize="small"/> */}
+      </div>
 
-        {
+      {/* {
           comments.map((commentRecord) => {
             return <>
               <span>{ commentRecord.comment }</span> ({ commentRecord['likes']?.length })
@@ -230,9 +202,9 @@ function Post(props) {
               <br />
             </>;
           })
-        }
+        } */}
 
-        {input &&
+      {/* {input &&
             <TextField 
               id="skill1" 
               label="Enter comment" 
@@ -242,7 +214,7 @@ function Post(props) {
               onChange={handlechange}
             />
           }
-          <Button onClick={() => addComment()}>ADD Comments</Button>
+          <Button onClick={() => addComment()}>ADD Comments</Button> */}
       {/* </div>
     </div> */}
     </>

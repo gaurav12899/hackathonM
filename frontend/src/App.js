@@ -25,6 +25,7 @@ import Landing from './Components/Landing/Landing';
 import Freelancing from './Components/Freelancing';
 import FreelancingRegister from './Components/Freelancing/Freelancing';
 import CardDetails from './Components/Freelancing/CardDetails';
+import postDetails from './Components/Feed/postDetails';
 import ArticleForm from './Components/Article/ArticleForm';
 import Article from './Components/Article/index';
 import Registrations from './Components/Landing/Registrations';
@@ -110,6 +111,7 @@ function App() {
         <PrivateRoute path="/article-form" component={ArticleForm} />
         <PrivateRoute path="/article-view/:id" component={ArticleView} />
         <PrivateRoute path="/freelancer/:id" component={CardDetails} />
+        <PrivateRoute path="/post/:id" component={postDetails} />
 
         {/* <PrivateRoute path="/bookmarks" component={Bookmark} /> */}
         <PrivateRoute path ="/add-question" component={Question}/>
