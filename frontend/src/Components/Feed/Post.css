@@ -29,6 +29,7 @@
     display: flex;
     justify-content: start;
     margin-top: 20px;
+    color: red;
   }
   
   .post__headerSpecial {
@@ -45,4 +46,15 @@
 .post__headerDescription {
     margin-bottom: 10px;
     font-size: 15px;
+  }
+  .post__image{
+    border-radius: 10px;
+    margin-top:20px;
+    text-align: center;
+    display: block;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    
+    
   }

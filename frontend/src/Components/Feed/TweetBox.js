@@ -20,7 +20,7 @@ function TweetBox(props) {
                 {/* <link> */}
 
                 <div style={{ textAlign: 'right', display: 'inline-block' }}>
-                <Button className="tweetBox_tweetButton" onClick={() => {if (props.onSearchClick) props.onSearchClick(search)}}>Search</Button>
+                <Button style={{ marginRight: '10px'}} className="tweetBox_tweetButton" onClick={() => {if (props.onSearchClick) props.onSearchClick(search)}}>Search</Button>
                 <Button className="tweetBox_tweetButton" style={{ marginLeft: '12px !important', width: 'auto' }} onClick={() => {if (props.onClearFilter) props.onClearFilter()}}>Clear Filter</Button>
                 </div>
             </form>

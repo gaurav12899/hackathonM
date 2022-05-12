@@ -33,6 +33,7 @@
     border: 1px solid #eee;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
       0 6px 20px 0 rgba(66, 42, 42, 0.19);
+    border-radius:10px;
   }
   
   .question-options {
@@ -113,4 +114,14 @@
     background-color: var(--hover-color);
     color: var(--primary-color);
     font-weight: bold;
+  }
+
+  .questionTitle{
+    width: 97% !important;
+  }
+  .questionQuill{
+    width: 100% !important;
+  }
+  .QuestionTag{
+    margin-top: 50px !important;
   }

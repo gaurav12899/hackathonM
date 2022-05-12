@@ -182,9 +182,9 @@ function AddPost() {
                    placeholder='press enter to add a new tag' />
               </div>
             </div>
+            <button className='button addPostBtn' type="submit"  onClick={handleSubmit} >Add Post</button>
           </div>
         </div>
-        <button className='button' type="submit"  onClick={handleSubmit} >Add Post</button>
       </div>
     </div>
   )

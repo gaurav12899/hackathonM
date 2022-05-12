@@ -301,10 +301,11 @@ function MainQuestion() {
         value={answer}
         onChange={handleQuill}
         modules={Editor.modules}
-        className="react-quill"
+        // className="react-quill"
         theme="snow"
         style={{
           height: "200px",
+          width: "100%",
         }}
       />
     </div>

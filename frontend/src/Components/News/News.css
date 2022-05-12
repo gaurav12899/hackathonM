@@ -1,7 +1,7 @@
 .News{
     flex: 0.35;
     min-width: 500px;
-    margin-top: 20px;
+    margin-top: 10px;
     padding-left: 20px;
     padding-right: 20px;
     height: 100;
@@ -32,8 +32,19 @@
 .card-title{
     margin: 5px 0px;
     padding:0px;
+    font-size: 18px;
+}
+.newsText{
+    padding: 0px !important;
 }
 .card-text{
     margin-top: 5px;
     padding:0px;
+}
+.card-img-top{
+    width: 100%;
+    height: auto;
+}
+.newsCard{
+    margin-top: 5px !important;
 }

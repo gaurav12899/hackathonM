@@ -26,7 +26,7 @@ function Freelancing() {
       <div className="content" style={{ width: "100%", height: "100%" }}>
         <div style={{ width: "100%", textAlign: "right", display: 'flex', alignItems: 'end' }}>
         <div className="button" onClick={() => history.push("/register-freelancing")}
-         style={{ width: "100%", "maxWidth": "unset", "textAlign": "center", "padding": "30px" }} >
+         style={{marginLeft:"auto",marginTop:"50px", marginRight:"auto",  width: "30%", maxWidth: "unset", textAlign:' center', padding: "10px 15px" }} >
             Register as freelancer
         </div>
         </div>

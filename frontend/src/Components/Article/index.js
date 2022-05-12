@@ -34,12 +34,10 @@ function Article() {
     <div className="articleIndex">
       <SideBar />
       <div className="mainDiv">
-        <button
-          className="articalButton"
-          onClick={() => history.push("/article-form")}
-        >
-          Write Article
-        </button>
+        <div className="button" onClick={() => history.push("/article-form")}
+         style={{marginLeft:"auto",marginTop:"50px", marginRight:"auto",  width: "30%", maxWidth: "unset", textAlign:' center', padding: "10px 15px" }} >
+            Write Article
+        </div>
 
         {details && details.length > 0
           ? details.map((article, i) => (

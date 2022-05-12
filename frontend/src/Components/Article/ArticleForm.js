@@ -156,6 +156,7 @@ function ArticleForm() {
                   </div>
                 </div>
               </div>
+            <button className='button addPostBtn' type="submit">Add Article</button>
             </div>
             <button className="button" type="submit">
               Add Article

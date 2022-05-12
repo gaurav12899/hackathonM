@@ -6,7 +6,7 @@ function NewsItem({news}) {
     return (
         <div className="NewsItem">
                 <div className="my-3">
-                <div className="card">
+                <div className="card newsCard">
                   <img
                   width={120}
                     className="card-img-top"
@@ -16,7 +16,7 @@ function NewsItem({news}) {
                   <div className="card-body">
                       {console.log(news.title)}
                     <h5 className="card-title">{news.title}</h5>
-                    <p className="card-text">{news.description}</p>
+                    <p className="card-text newsText">{news.description}</p>
                     <a href={news.url} target="_blank" className="btn btn-sm btn-primary knowBtn">Know more</a>
                     <br/>
                   </div>

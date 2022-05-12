@@ -31,7 +31,7 @@ console.log("freelancers", freelancers);
   return (
     <div className="freelanceCard">
       <Box
-        sx={{ flexGrow: 1, margin: 5 }}
+        sx={{ flexGrow: 1, margin: 5, marginTop:'0px' }}
         // onClick={() =>history.push({pathname: `/freelancer/view/${details._id}`, state: {details}})}
       >
         <Grid container spacing={2} columns={{ xs: 4, sm: 8, md: 12 }}>
