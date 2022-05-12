@@ -27,7 +27,7 @@ function FreelanceCard({ details }) {
     getFreelancers();
   }, []);
 
-console.log("freelancers", details);
+console.log("freelancers", freelancers);
   return (
     <div className="freelanceCard">
       <Box
@@ -58,7 +58,7 @@ console.log("freelancers", details);
                   >
                     <Avatar
                       alt="Semy Sharp"
-                      src={details?.user?.profilePic}
+                      src={item?.user?.profilePic}
                       sx={{ width: 70, height: 70, marginTop:1 }}
                     />
                     <CardContent className="card-contaent">
@@ -69,7 +69,7 @@ console.log("freelancers", details);
                         </Typography>
                         <Typography variant="h6" component="div">
                           {" "}
-                          { details?.user?.firstName } { details?.user?.lastName }
+                          { item?.user?.firstName } { details?.user?.lastName }
                         </Typography>
                       </div>
                       <div className="card-text">
@@ -79,7 +79,7 @@ console.log("freelancers", details);
                         </Typography>
                         <Typography variant="h6" component="div">
                           {" "}
-                          {details?.skill?.toString()}
+                          {item?.skill?.toString()}
                         </Typography>
                       </div>
                     </CardContent>
