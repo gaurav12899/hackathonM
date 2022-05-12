@@ -27,8 +27,7 @@ function FreelanceCard({ details }) {
     getFreelancers();
   }, []);
 
-  console.log('freelancers', freelancers);
-
+console.log("freelancers", details);
   return (
     <div className="freelanceCard">
       <Box
@@ -55,7 +54,7 @@ function FreelanceCard({ details }) {
                   <Card
                     sx={{ boxShadow: 5, borderRadius: 3 }}
                     className="cards"
-                    onClick={() => history.push("/freelancer")}
+                    onClick={() => history.push(`/freelancer/${details._id}`)}
                   >
                     <Avatar
                       alt="Semy Sharp"

@@ -32,8 +32,6 @@ function Post(props) {
     await axios
         .post("/api/like/liketoggle", {postId, userId: AuthUser.uid}, config)
         .then((res) => {
-          // debugger;
-          console.log("like------------>>>", res.data);
           if (OnLike) {
             OnLike(res.data.response);
           }
@@ -46,7 +44,6 @@ function Post(props) {
     setIsLiked({...isLiked, like: !isLiked.like});
   }
 
-console.log("image", image);
   return (
     <div className="post">
       <div className="post__avatar">
@@ -69,7 +66,7 @@ console.log("image", image);
             }
             <p>
               {/* {props.data} */}
-              <b>{title}</b>
+              <b><h1>{title}</h1></b>
             { Parser(description) }
             </p>
           </div>

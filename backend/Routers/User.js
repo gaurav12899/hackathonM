@@ -84,7 +84,6 @@ router.get("/", async (req, res) => {
       res.status(201).send(doc);
     })
     .catch((err) => {
-      debugger
       res.status(400).send({
         message: "User update failed " + err.message,
       });

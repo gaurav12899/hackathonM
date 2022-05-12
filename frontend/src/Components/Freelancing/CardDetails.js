@@ -31,6 +31,7 @@ function CardDetails(props) {
       });
     setLoading(false);
   }, []);
+  console.log("details", details);
   return (
     <div className="freelancing">
       <SideBar />

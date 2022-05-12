@@ -72,7 +72,7 @@ function Registrations(props) {
     intrest1: Yup.string().required("Intrest1 is required"),
     company: Yup.string().required("Company is required"),
     skill: Yup.string().required("Skill is required"),
-    workExperience: Yup.string().required("Experience is required"),
+    workExperience: Yup.string().max(2).required("Experience is required"),
     address: Yup.string().required("Address is required"),
   });
   const formik = useFormik({
@@ -189,6 +189,7 @@ function Registrations(props) {
                     )}
                     name="dob"
                     label="DateOfBirth"
+                    maxDate={new Date()}
                     value={moment(formik?.values?.dob).format(
                       "YYYY-MM-DD"
                     )}
@@ -216,6 +217,7 @@ function Registrations(props) {
                   name="email"
                   value={formik.values.email}
                   onChange={formik.handleChange}
+                  disabled={true}
                   error={formik.touched.email && Boolean(formik.errors.email)}
                   helperText={formik.touched.email && formik.errors.email}
                 />
@@ -298,7 +300,6 @@ function Registrations(props) {
                   </Select>
                 </FormControl> */}
                 <TextField
-                  select
                   className="reg-text"
                   id="Community"
                   label="Alternative Contact Details"
@@ -313,9 +314,6 @@ function Registrations(props) {
                     formik.touched.community && formik.errors.community
                   }
                 >
-                  <MenuItem key={"as"} value={"as"}>
-                    No Selected // Or Empty
-                  </MenuItem>
                 </TextField>
               </Box>
               <div className="intrest">
@@ -368,6 +366,7 @@ function Registrations(props) {
                 <TextField
                   className="work1"
                   id="exp"
+                  type="number"
                   label="Work Experience"
                   variant="outlined"
                   name="workExperience"
