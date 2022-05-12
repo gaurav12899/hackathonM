@@ -75,6 +75,10 @@ function MainQuestion() {
   const [answer, setAnswer] = useState("");
   const [show, setShow] = useState(false);
   const [comment, setComment] = useState("");
+
+  const [ questionLiked, setQuestionLikes ] = useState(false);
+  const [ questionDisLiked, setQuestionDisLikes ] = useState(false);
+
   // const [comments, setComments] = useState([]);
   const user = useSelector(selectUser);
 
@@ -139,6 +143,31 @@ function MainQuestion() {
 
     // setShow(true)
   };
+
+  const toggleLikeQuestion = () => {
+
+    if (questionLiked) {
+      setQuestionLikes(false);
+    } else {
+      setQuestionLikes(true);
+      if (questionDisLiked) {
+        setQuestionDisLikes(false);
+      }
+    }
+
+  }
+
+  const toggleDisLikeQuestion = () => {
+    if (questionDisLiked) {
+      setQuestionDisLikes(false);
+    } else {
+      setQuestionDisLikes(true);
+      if (questionLiked) {
+        setQuestionLikes(false);
+      }
+    }
+  }
+
   return (<div className='main'>
     <div className='main-container'>
       <div className='main-top'>
@@ -161,9 +190,9 @@ function MainQuestion() {
           <div className='all-questions-left'>
             <div className='all-options'>
               {/* <LikeIcon/> */}
-              <p className='arrow'><ThumbUp color='action' /> </p>
+              <p className='arrow' onClick={toggleLikeQuestion} ><ThumbUp color={ questionLiked ? 'red' : 'action'} /> </p>
               <p className='arrow'>0</p>
-              <p className='arrow'><ThumbDown color='action' /></p>
+              <p className='arrow' onClick={toggleDisLikeQuestion}><ThumbDown color={ questionDisLiked ? 'red' : 'action'} /></p>
               <HistoryIcon color='action' />
               <BookmarkIcon color='action' />
             </div>
