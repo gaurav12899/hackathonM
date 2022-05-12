@@ -27,7 +27,6 @@ function FreelanceCard({ details }) {
     getFreelancers();
   }, []);
 
-console.log("freelancers", freelancers);
   return (
     <div className="freelanceCard">
       <Box
@@ -48,13 +47,14 @@ console.log("freelancers", freelancers);
             </Grid>
           </Box>
           {freelancers?.map((item) => {
+            console.log("item",item)
             return (
               <>
                 <Grid item xs={4}>
                   <Card
                     sx={{ boxShadow: 5, borderRadius: 3 }}
                     className="cards"
-                    onClick={() => history.push(`/freelancer/${details._id}`)}
+                    onClick={() => history.push(`/freelancer/${item._id}`)}
                   >
                     <Avatar
                       alt="Semy Sharp"
