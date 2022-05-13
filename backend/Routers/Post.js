@@ -50,24 +50,28 @@ const bindCommentsData = async (postId) => {
 }
 
 router.post("/", imageUpload.single('image'), async (req, res) => {
-  console.log("file_name", req.file);
-  const model = new postModel({
-    title: req.body.title,
-    description: req.body.description,
-    tags: req.body.tags,
-    user: JSON.parse(req.body.user) || {},
-    image: `uploads/${req.file.originalname}`
-  });
-
-  model.save()
-    .then((doc) => {
-      res.status(201).send(doc);
-    })
-    .catch((err) => {
-      res.status(400).send({
-        message: "Post not added successfully",
-      });
+  try {
+    console.log("file_name", req.file);
+    const model = new postModel({
+      title: req.body.title,
+      description: req.body.description,
+      tags: req.body.tags,
+      user: JSON.parse(req.body.user) || {},
+      image: `uploads/${req.file.originalname}`
     });
+  
+    model.save()
+      .then((doc) => {
+        res.status(201).send(doc);
+      })
+      .catch((err) => {
+        res.status(400).send({
+          message: "Post not added successfully",
+        });
+      });
+  } catch (e) {
+    res.status(500).send({ message: 'Internal Server error ' + e.message });
+  }
 });
 
 router.get("/filter/:search", async (req, res) => {
