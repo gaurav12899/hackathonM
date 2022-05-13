@@ -135,7 +135,7 @@ function ArticleView(props) {
                 <CardMedia
                   component="img"
                   height="500"
-                  src={`http://localhost:3000/${details?.image}`}
+                  src={`http://ec2-13-235-245-30.ap-south-1.compute.amazonaws.com:2000/${details?.image}`}
                   alt="img"
                 />
                 <Typography

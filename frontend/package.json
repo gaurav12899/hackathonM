@@ -2,7 +2,7 @@
   "name": "molecule",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://127.0.0.1:2000",
+  "proxy": "http://ec2-13-235-245-30.ap-south-1.compute.amazonaws.com:2000",
   "dependencies": {
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
